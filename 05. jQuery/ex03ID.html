@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <p>로그인 폼을 작성해봅시다</p>
+   <button id="btnP">p태그 다루기</button>
+   <div id="div1">
+      <h1 class="h">로그인폼</h1>
+      ID : <input type="text" name="id"><br>
+      PW : <input type="text" name="pw">
+   </div>
+   <p class="h"></p>
+   <button id="btnDiv">div태그 다루기</button>
+   <button id="btnH">h태그 다루기</button>
+   <button id="addAttr">id input 속성 추가</button>
+   <button id="getId_Pw">input태그 다루기</button>
+   <button id="removeAttr">속성지우기</button>
+   <button id="removeP">p태그 지우기</button>
+
+    <script>
+        // 1. 'p태그 다루기'라는 버튼을 클릭 시, p태그 안에 내용을 'p태그 클릭!'으로 변경
+        $('#btnP').click(()=>{
+            $('p').text("p태그 클릭!")
+        })
+        
+        // 2. 'div태그 다루기'라는 버튼을 클릭 시, id가 div1인 태그의 배경 색상을 pink색으로 변경
+        $('#btnDiv').click(()=>{
+            $('#div1').css('background-color', 'pink')
+        })
+
+        // 3. 'h태그 다루기'라는 버튼을 클릭 시, 버튼 안의 글자 '바꾸기!'로 변경
+        // ★Arrow Function 안에서는 this 문법을 사용할 수 없다.★
+        $('#btnH').click(function(){
+            $(this).text('바꾸기!')  // ★내가 선택한 이 친구만 바뀜★
+        })
+
+        // 4. 'id input 속성 추가'라는 버튼 클릭 시, input창의 placeholder속성을 "ID작성"으로 추가해주기
+        $('#addAttr').click(function(){
+            // jQuery에서 속성을 접근&추가 .attr('속성이름', '속성값') 
+            $('input[name=id]').attr('placeholder','ID작성')
+        })
+        
+        // 5. 'input태그다루기'라는 버튼 클릭시, 사용자가 입력한 id, pw값을 alert창으로 띄워줌!
+        $('#getId_Pw').click(function(){
+            // JS input태그 안에 있는 값 -> value
+            // jQuery -> val()
+            // inputID, inputPW
+            let id = $('input[name=id]').val() 
+            let pw = $('input[name=pw]').val()
+            alert(id, pw)
+        })
+
+        // 6. 4번에서 추가했던 placeholder속성 삭제
+        // removeAttr()
+        $('#removeAttr').click(function(){
+            $('input[name=id]').removeAttr('placeholder')
+        })
+
+        // 7. '태그 지우기'라는 버튼을 클릭 시, p태그 삭제
+        $('#removeP').click(()=>{
+            $('p').remove()
+        })
+    </script>
+</body>
+</html>

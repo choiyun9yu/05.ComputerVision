@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 배열 : 여러 변수를 하나의 묶음으로 다루는 것 (배열 안에 자료형 하나만 쓰는게 좋음) 
+        // 1.배열의 선언
+        let arr = []
+        let arr2 = new Array()
+        // new Array(배열길이) 숫자 하나만 적으면 길이, 여러개 적으면 요소로 들어감
+        // ** 배열 길이를 설정했어도, 초과 가능
+        //    --> 공간이 동적, 가변적
+
+        // ★중요!★ 무조건! 배열의 선언을 먼저 진행
+
+        // 2.배열의 생성
+        arr = [1,2,3]
+        arr2 = new Array(1,2,3,4,5)
+        console.log(arr2)
+
+        // 1+2 동시에
+        let arr3 = [1,2,3]
+
+        // 3. 배열 안에 데이터 저장
+        // ** 인덱스로 접근할 때 0부터 시작!
+        let teacher = []
+        teacher[0] = '나예호 선생님'
+        teacher[1] = '홍성채 선생님'
+        teacher[2] = '선영표 선생님'
+        console.log(teacher.length)
+
+        // 4. 배열에 저장된 데이터에 접근
+        // --> 인덱스!
+        for(i=0;i<=teacher.length;i++){
+            console.log(teacher[i])
+        }
+    </script>
+</body>
+</html>

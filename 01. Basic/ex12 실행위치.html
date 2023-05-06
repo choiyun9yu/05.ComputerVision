@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./ex12 외부.js"></script>
+</head>
+<body>
+    <!-- 내부 방식
+    head 혹은 body 영역에 script 태그를 작성해서 
+    그 안에 js 문법을 사용하는 방법-->
+    <script></script>
+
+    <!-- 인라인 방식 
+    태그 안에 직접 기능을 넣어줄 때 사용 -->
+    <button onmouseenter="alert('마우스 올림!')">마우스 올리기!</button> 
+                     <!-- 코테이션을 다르게 써야함 -->
+
+    <!-- 외부 방식
+    외부의 js파일 안에 js문법을 작성한 후 연결 -->
+    <button onclick="ck()">마우스 클릭!</button>
+                <!-- [파일 하나 새로 만듬 name.js] 
+                     [파일 안에 함수 정의] function 함수이름() {실행할 로직}
+                     [연결하는 법: <script src="연결할 것의 경로"></script> -->
+</body>
+</html>

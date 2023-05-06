@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JS</li>
+    </ul>
+    <script>
+        let li = document.getElementsByTagName('li')   
+        // console.log(li[1].innerText)
+        // Elements로 불러오면 HTML Collection 형태 (유사배열)
+        // HTML 요소를 가지고 올때는 배열과 같은 형태를 사용한다
+
+        for(let i=0;i<li.length;i++){
+            console.log(li[i].innerText)
+            li[i].innerText = 'hi'
+        }
+    </script>
+</body>
+</html>

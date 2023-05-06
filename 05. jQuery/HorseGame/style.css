@@ -1,0 +1,33 @@
+#bg {
+    width: 1280px;
+    height: 720px;
+    background-image: url('./img/bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+img {
+    width: 70px;
+    height: 170px;
+    position: absolute;
+    right: 0px;
+    bottom: 200px;
+}
+.btn {
+    width: 170px;
+    height: 100px;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    color:white;
+    background: rgba(0,0,0,0.3)
+}
+.left{
+    right:600px;
+    bottom:25px;
+}
+.right{
+    right:400px;
+    bottom:25px;
+}

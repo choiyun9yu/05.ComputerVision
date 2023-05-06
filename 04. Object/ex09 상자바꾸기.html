@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+        }
+        #redBox{
+            background-color: red;
+        }
+        #blueBox{
+            background-color: blue;
+        }
+        #greenBox{
+            background-color: green;
+        }
+        #grayBox{
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div id="redBox"></div>
+    <div id="blueBox"></div>
+    <div id="greenBox"></div>
+    <div id="grayBox"></div>
+    <button onclick="margin()">이동하기!</button>
+    <button onclick="radius()">둥글게!</button>
+
+    <script>
+        // ver1  ID값을 이용
+
+        //  ver2 TagName이용
+        let margin = ()=>{
+            let divList = document.getElementsByTagName('div')
+         
+        // 1. div 두번째 상자는100px, 세번째 상자는 200px, 네번째 상자는 300px 만큼 margin-left
+            for(i=0;i<divList.length;i++){
+                divList[i].style.marginLeft=i*100+'px'
+            }
+        }        
+         let radius = ()=>{
+            let divList = document.getElementsByTagName('div')
+            for(i=0;i<divList.length;i++){
+                divList[i].style.borderTopRightRadius='50%'
+                divList[i].style.borderBottomLeftRadius='50%'
+            }
+        // 2. border-top-right-radicus -> 50%
+        //    border_bottom-left-radius -> 50%
+        // 이때 JS의 영역에서 CSS 속성을 적고 싶다면 camelCase로 적을 것
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="https://image.ytn.co.kr/general/jpg/2020/1014/202010141533404817_t.jpg" width="300" id="img1">
+    <button onclick="ch()">이미지 변경!</button>
+
+    <script>
+        let ch=()=>{
+            let img = document.getElementById('img1')
+            // 속성의 값 변경?
+            // Element.속성이름 = '속성값'
+            // img.src='https://image.koibito.co.kr/product_photo/201906/1560503692_b_1_3_10.JPG'
+            // img.width='300'
+            // 만약에 ID가 img1인 태그의 src 속성이 1번 사진이라면 -> 2번
+            if (img.src == "https://image.ytn.co.kr/general/jpg/2020/1014/202010141533404817_t.jpg"){
+                img.src = 'https://image.koibito.co.kr/product_photo/201906/1560503692_b_1_3_10.JPG'
+                img.width = '300'
+                img.height = '300'
+            }else{img.src='https://image.ytn.co.kr/general/jpg/2020/1014/202010141533404817_t.jpg'
+                    img.width = '300' 
+                    height = '300'}
+            // 만약에 ID가 img1인 태그의 src 속성이 2번 사진이라면 -> 1번
+            }
+
+        // a
+    </script>
+</body>
+</html>
