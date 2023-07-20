@@ -118,3 +118,8 @@ for (let i = 3; i > 0; i = i - 2) {
 
 // break : 반복문 중지
 // continue : 지금 반복 중단 후 반복 재개
+
+// 파이썬 처럼 for문 쓰기 (of가 in이랑 비슷한 역할)
+const args = array
+for (const arg of args) {
+}
