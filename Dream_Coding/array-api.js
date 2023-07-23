@@ -1,3 +1,5 @@
+'use strict';
+
 // Q1. make a string out of an array
 {   // join(sep) : arr to str
     const fruits = ['apple', 'banana', 'orange'];
