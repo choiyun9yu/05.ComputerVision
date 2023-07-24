@@ -30,13 +30,13 @@
         level: 1,
     };
 
-    // 안좋은 코드
+    // bad code
     {
         const name = student.name;      // object에 접근하기 위한 방법 .
         const level = student.level;
     }
 
-    // 좋은 코드
+    // good code
     {
         const { name, level } = student;    // 객체 내 프로퍼티에 접근 가능
         console.log(name,level);
@@ -48,14 +48,14 @@
     // array
     const animals = ['dog', 'cat'];
 
-    // 안좋은 코드
+    // bad code
     {
         const first = animals[0];
         const second = animals[1];
         console.log(first, second);
     }
     {
-    // 좋은 코드
+    // good code
         const [first, second] = animals;    // 배열과 오브젝트는 괄호 모양의 차이이다.
         console.log(first, second); 
     }
