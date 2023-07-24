@@ -52,4 +52,3 @@ fetchNumber
 
 
 // 4. Error Handling
-const getHen = ()
