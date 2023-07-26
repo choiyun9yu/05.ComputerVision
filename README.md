@@ -44,3 +44,11 @@
 ### 2.1 옵셔널 파라미터(Optional Parameters)
 매개 변수에 default 값을 미리 할당해두고 값이 입력되지 않으면 default값이 인자로 들어가는 것이다.
 - function funcName (a, b='defaultParam') {...}
+
+
+## 3. 제어문
+
+### 3.1 if문과 switch문
+- 범위를 만족하는 조건 식을 만들 때는 if문이 더 효과적이다.
+- 특정 값을 만족하는 조건식을 만들 때는 switch문이 더 효과적이다.  
+(!주의 switch문은 === 를 사용해야한다. switch문은 암묵적인 형 변환을 허용하지 않기 때문이다.)
