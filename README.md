@@ -33,3 +33,14 @@
 - ex) JSON.parse(JSON.stringify(target));
 
 ### 1.4 undefined와 null
+둘 모두 값이 없다는 것을 표현할 때 사용한다. 그러나 그 의미는 조금 다르다.
+- null : 의도적으로 값이 없다는 것을 표현할 때 사용한다.
+- undefined : 할당된 값이 없다는 것을 확인할 때 사용된다. (값이 주어지지 않은 변수에 기본적으로 할당)
+
+
+
+## 2. 함수
+
+### 2.1 옵셔널 파라미터(Optional Parameters)
+매개 변수에 default 값을 미리 할당해두고 값이 입력되지 않으면 default값이 인자로 들어가는 것이다.
+- function funcName (a, b='defaultParam') {...}
