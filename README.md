@@ -69,3 +69,29 @@
     console.log(k);         // 키 값
     console.log(obj[k]);    // 밸류 값
 } 
+- !주의 객체는 property name이 정수인 것들을 먼저 오름차순 정렬하고, 나머지를 추가한 순서대로 정렬한다.
+
+
+
+## 4. 내장 객체 : JS가 미리 가지고 있는 객체
+
+### 4.1 날짜 객체
+- 날짜 객체 생성   
+let myDate = new Date();    // 이 객체를 생성한 시간이 출력(요일 월 일 년 시간 시간대)  
+let myDate = new Date(밀리초);    // 1970년 1월 1일 00:00:00 UTC + 밀리초(1000밀리초 = 1초)  
+let myDate = new Date('2023-07-28T08:24');   // 특정 날짜와 특정 시간으로 Date 객체 생성  
+(시간을 따로 지정하지 않으면 자정을 기준으로 Date객체가 생성된다.)  
+let myDate = new Date(yyyy, mm, dd, hh, mm, ss, ms);    // 연도와 월까지만 필수입력
+!주의 mm은 시작값이 0이다. 따라서 1월은 컴퓨터에가 0이다.
+
+- 날짜 객체 정보 가져오기  
+myDate.getTime();   // 해당 날짜 객체가 1970년 1월 1일 00:00:00 UTC 부터 몇 밀리초 지났는지 반환 (타임 스탬프)  
+    - console.log(myDate.getFullYear());
+    - console.log(myDate.getMonth());   // 월 정보  0이 1월
+    - console.log(myDate.getDate());    // 날짜 정보 1이 1일
+    - console.log(myDate.getDay());     // 요일 정보 0이 일요일
+    - console.log(myDate.getHours());
+    - console.log(myDate.getMinutes());
+    - console.log(myDate.getSeconds());
+    - console.log(myDate.getMilliseconds());  
+(!응용) let timeDiff = myDate.getTime() - today.getTime(); 으로 시간 얼마나 지났는지 확인 가능  
