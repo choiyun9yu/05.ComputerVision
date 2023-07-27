@@ -84,8 +84,10 @@ let myDate = new Date('2023-07-28T08:24');   // 특정 날짜와 특정 시간�
 let myDate = new Date(yyyy, mm, dd, hh, mm, ss, ms);    // 연도와 월까지만 필수입력
 !주의 mm은 시작값이 0이다. 따라서 1월은 컴퓨터에가 0이다.
 
-- 날짜 객체 정보 가져오기  
+- 날짜 객체 정보 검색  
+현재 시간 반환 : Date.now(); 
 myDate.getTime();   // 해당 날짜 객체가 1970년 1월 1일 00:00:00 UTC 부터 몇 밀리초 지났는지 반환 (타임 스탬프)  
+(!응용) let timeDiff = myDate.getTime() - today.getTime(); 으로 시간 얼마나 지났는지 확인 가능  
     - console.log(myDate.getFullYear());
     - console.log(myDate.getMonth());   // 월 정보  0이 1월
     - console.log(myDate.getDate());    // 날짜 정보 1이 1일
@@ -93,6 +95,42 @@ myDate.getTime();   // 해당 날짜 객체가 1970년 1월 1일 00:00:00 UTC �
     - console.log(myDate.getHours());
     - console.log(myDate.getMinutes());
     - console.log(myDate.getSeconds());
-    - console.log(myDate.getMilliseconds());  
-    
-(!응용) let timeDiff = myDate.getTime() - today.getTime(); 으로 시간 얼마나 지났는지 확인 가능  
+    - console.log(myDate.getMilliseconds());   
+
+- 날짜 객체 정보 수정  
+set으로 시작하는 다양한 메서드를 활용하면, 생성된 날짜 객체의 정보를 수정할 수도 있다.
+    (대괄호로 감싸진 요소들은 선택적인 요소)
+    - setFullYear(year, [month], [date])
+    - setMonth(month, [date])
+    0 setDate(date)
+    - setHours(hour, [min], [sec], [ms])
+    - setMinutes(min, [sec], [ms])
+    - setSeconds(sec, [ms])
+    - setMilliseconds(ms)
+    - setTime(milliseconds)(1970년 1월 1일 00:00:00 UTC부터 밀리초 이후를 나타내는 날짜를 설정)  
+
+간단하게 시간정보 알아내는 방법 (사용자 브라우저에 설정된 국가의 표기에 맞춰 날짜와 시간을 반환)
+    - let myDate = new Date();  
+    console.log(myDate.toLocaleString()); // myDate가 가진 날짜와 시간에 대한 정보 (년. 월. 일 시:분:초)  
+    console.log(myDate.toLocaleDateString()); // myDate가 가진 날짜에 대한 정보 (년. 월. 일)  
+    console.log(myDate.toLocaleTimeString()); // myDate가 가진 시간에 대한 정보 (시:분:초)  
+
+자동 날짜 수정 : 1월 32일을 입력하면 자동으로 2월 1일로 수정된다.  
+
+- 날짜 객체 형 변환  
+let myDate = new Date(2017, 4, 18);  
+console.log(typeof myDate); // object  
+console.log(String(myDate)); // Thu May 18 2017 00:00:00 GMT+0900 (Korean Standard Time)  
+console.log(Number(myDate)); // 1495033200000  
+console.log(Boolean(myDate)); // true  
+
+- 날짜 객체 간의 사칙연산
+!주의 number 타입으로 변환한 경우 getTime() 메소드를 활용한 것과 똑같은 수치의 타임 스탬프 값      
+let myDate1 = new Date(2017, 4, 18);  
+let myDate2 = new Date(2017, 4, 19);  
+let timeDiff = myDate2 - myDate1;  
+console.log(timeDiff); // 86400000 (ms)  
+console.log(timeDiff / 1000); // 86400 (sec)  
+console.log(timeDiff / 1000 / 60) // 1440 (min)  
+console.log(timeDiff / 1000 / 60 / 60) // 24 (hour)  
+console.log(timeDiff / 1000 / 60 / 60 / 24) // 1 (date)  
