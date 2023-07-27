@@ -94,4 +94,5 @@ myDate.getTime();   // 해당 날짜 객체가 1970년 1월 1일 00:00:00 UTC �
     - console.log(myDate.getMinutes());
     - console.log(myDate.getSeconds());
     - console.log(myDate.getMilliseconds());  
+    
 (!응용) let timeDiff = myDate.getTime() - today.getTime(); 으로 시간 얼마나 지났는지 확인 가능  
