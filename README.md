@@ -60,3 +60,12 @@
 ### 3.3 break와 countinue
 - break : 지금 반복문 탈출해서 더 이상 반복 안하기
 - continue : 지금 반복 탈출하고 다음 반복 계속 이어가기
+
+### 3.4 for in 반복문 
+- 객체의 프로퍼티 수 만큼 반복된다.
+- 객체 내 프로퍼티 key name이 변수에 차례대로 전달된다.
+- 대괄호 활용법을 이용하면 프로퍼티의 value에도 접근할 수 있다.
+- ex) for k in ojb {
+    console.log(k);         // 키 값
+    console.log(obj[k]);    // 밸류 값
+} 
