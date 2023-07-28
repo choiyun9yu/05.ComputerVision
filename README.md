@@ -69,11 +69,13 @@
     console.log(k);         // 키 값
     console.log(obj[k]);    // 밸류 값
 } 
-- !주의 객체는 property name이 정수인 것들을 먼저 오름차순 정렬하고, 나머지를 추가한 순서대로 정렬한다.
 
 
 
-## 4. 내장 객체 : JS가 미리 가지고 있는 객체
+
+## 4. 객체
+!주의 객체는 property name이 정수인 것들을 먼저 오름차순 정렬하고, 나머지를 추가한 순서대로 정렬한다.
+- 내장객체 : JS가 미리 가지고 있는 객체
 
 ### 4.1 날짜 객체
 - 날짜 객체 생성   
@@ -134,3 +136,13 @@ console.log(timeDiff / 1000); // 86400 (sec)
 console.log(timeDiff / 1000 / 60) // 1440 (min)  
 console.log(timeDiff / 1000 / 60 / 60) // 24 (hour)  
 console.log(timeDiff / 1000 / 60 / 60 / 24) // 1 (date)  
+
+
+
+## 5. 배열 
+
+### 5.1 배열은 미리 만들어 둔 객체이다. 배열에도 미리 만들어진 메소드들이 있다.
+    - 배열의 길이 반환 : arr.length;    arr['length'];
+    - 배열의 마지막 요소에 접근하기 : arr[arr.length-1]'
+    - 배열에 요소 추가/수정하기 arr[index] = value;
+    - 
