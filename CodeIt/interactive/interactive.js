@@ -188,7 +188,10 @@
     // elem.removeAttribute('속성'): 속성 제거하기
     tomorrow.removeAttribute('href'); 
     tomorrow.removeAttribute('class'); 
+}
 
 
+
+{ // 5. 스타일 다루기
 
 }
