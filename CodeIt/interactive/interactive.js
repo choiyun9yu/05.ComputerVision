@@ -52,7 +52,6 @@
     window.open();  // 제목없음 빈 탭 새로 열림
     window.close(); // 탭이 닫힘
 }
-
 { // 3-2. DOM(Document Object Model, 문서 객체 모델) : HTML문서를 객체로 표현한 것
     // 웹페이지 문서의 최상단 객체, html 문서에 접근하기 위해 사용, 새로운 객체 만들때도 사용
     console.log(document);  // html이 반환
@@ -60,4 +59,52 @@
 
     const title = document.querySelector('#title'); // js에서 html 문서 객체에 접근하여 스타일 수정
     title.style.color = 'red';
+
+    // DOM Tree 전역객체인 window, 그 옆에 document 최상위 트리가 있고 html 문서들이 계층적으로 트리 구조를 이루고 있다.
+    // DOM Tree에 더 잘 접근하기 위해서는 부모, 자식, 형제 노드 관계를 파악하는 것이 중요하다!
+    // 노드는 다양한 노드 타입을 가지게 되는데 태그를 표현하는 노드를 요소노드, 문자를 표현하는 노드를 텍스트 노드라고 부른다.
+    // 일반적으로 텍스트 노드는 요소노드의 자식 노드가되고 따로 자식 노드를 가질 수 없다.
+}
+{ // 3-3. DOM 트리 여행하기
+    // id와 class를 활용해서 특정 태그에 접근할수도 있지만, 돔 트리의 구조를 활용해 접근할 수도 있다.
+    const myTag = document.querySelector('#content');
+    console.log(myTag);
+
+    // 선택한 요소의 부모 노드에 접근하는 방법
+    console.log(myTag.parentElement);
+
+
+    // 선택한 요소의 자식 노드에 접근하는 방법
+    console.log(myTag.children);            // 해당 요소의 자식 요소 접근, 대괄호 표기법으로 접근 가능
+    console.log(myTag.firstElementChild);   // 해당 요소의 첫번째 자식에 접근
+    console.log(myTag.lastElementChild);    // 해당 요소의 마지막 자식에 접근
+
+    // 선택한 요소의 형제 노드에 접근하는 방법
+    console.log(myTag.previousElementSibling);  // 이전 형제 요소에 접근, 없으면 null 출력
+    console.log(myTag.nextElementSibling);      // 다음 형제 요소에 접근
+
+    // 위 프로퍼티들은 연결해서도 사용 가능
+    console.log(myTag.nextElementSibling.children); // 다음 형제 노드의 자식 노드
+}
+{ // 3-4. 요소 노드 주요 프로퍼티
+    const myTag = document.querySelector('#content');
+    console.log(myTag);
+    
+    // 3-4-1. innerHTML : 해당요소 아래 있는 html 자체를 문자열로 반환
+    // 주의! 태그와 태그 사이 들여쓰기, 줄바꿈도 모두 리턴
+    console.log(myTag.innerHTML);
+    // 요소안의 html 수정할 때 더 자주 사용, //문자열로 할당하면 그 값으로 수정됨
+    // myTag.innerHTML += '<li>Extoic</li>'; // 증감연산자로 마지막 요소 뒤에 추가할 수도 있음
+
+    // 3-4-2. outerHTML : 해당 요소를 포함한 전체 HTML을 문자열로 반환
+    // 주의! 태그와 태그 사이 들여쓰기, 줄바꿈도 모두 리턴
+    console.log(myTag.outerHTML);
+    // 아우터는 이너와 다르게 해당 요소를 포함하기 때문에 문자열로 태그를 새로 할당하면 자신이 바뀌게됨
+    // myTag.outerHTML = '<li>Extoic</li>'
+
+    // 3-4-3. textContent : 요소안에 있는 html 중 텍스트만 반환
+    console.log(myTag.textContent);
+    // 역시 새로운 값을 할당해서 값 수정 가능 (단, 특수 문자도 문자열로 취급하기 때문에 태그 적용은 안된다.)
+    myTag.textContent = 'new text!';
+
 }
