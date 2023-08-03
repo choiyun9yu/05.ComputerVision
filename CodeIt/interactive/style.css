@@ -2,3 +2,16 @@
     opacity: 0.5;
     text-decoration: line-through;
 }
+
+body * {
+    padding: 7px 10px;
+    margin: 5px 8px;
+    color: #ffffff;
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: 500;
+}

@@ -243,7 +243,53 @@
 
 
 
-{ // 7. 이벤트 객체
+// { // 7. 이벤트 객체 : 이벤트가 발생하면 이벤트 정보를 담고 있는 이벤트 객체가 자동으로 생성된다.
+//     // 이벤트 핸들러가 되는 함수의 첫번째 파라미터로 이벤트 객체가 전달된다.
+//     const myInput = document.querySelector('#myInput');
+//     const myBtn = document.querySelector('#myBtn');
+
+//     // myInput.addEventListener('keydown', function () {
+//     //     console.log('KeyboardEvent');
+//     // });
+//     // myBtn.addEventListener('click', function () {
+//     //     console.log('MouseEvent');
+//     // });
+//     function printEvent(event) {
+//         console.log(event);
+//         event.target.style.color = 'red';
+//     }
+//     myInput.addEventListener('keydown', printEvent);
+//     myBtn.addEventListener('click', printEvent);
+//     // 이벤트 객체에는 많은 프로퍼티들이 존재하는데 그중 아래를 가장 많이 쓴다.
+//     // type: 발생한 이벤트 타입, target : 이벤트가 발생한 요소, currentTarget : 이벤트 핸들러가 등록된 요소,
+//     // timeStamp : 이벤트 발생 시각
+//     // bubbles : 버블링 단계인지 판단하는 값
+// }
 
 
+
+{ // 8. 이벤트 버블링 : 하나의 요소에 이벤트가 발생하게 되면, 그 요소의 할당된 이벤트 핸들러가 동작하고 
+                      // -> 같은 타입의 이벤트에 한해서 부모 요소의 핸들러도 동작한다. (최상단 윈도우 객체 만날 때 까지 반복)
+    const content = document.querySelector('#content');
+    const title = document.querySelector('#title');
+    const list = document.querySelector('#list');
+    const items = document.querySelectorAll('.item');
+
+    content.addEventListener('click', function () {
+        console.log('content Event');
+    });
+    
+    title.addEventListener('click', function () {
+        console.log('title Event');
+    });
+
+    list.addEventListener('click', function () {
+        console.log('list Event');
+    });
+
+    for (let item of items) { 
+        item.addEventListener('click', function () {
+            console.log('item Event');
+        });
+    }
 }
