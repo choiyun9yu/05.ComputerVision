@@ -437,7 +437,7 @@
 
 
 // { // 12. 마우스 이동 이벤트
-//     // mousemove : 마우스 포인터가 이동할 때 
+//     // mousemove : 마우스 포인터가 이동할 때
 //     // mouseover : 마우스 포인터가 요소 밖에서 안으로 이동할 때
 //     // mouseout : 마우스 포인터가 요소 안에서 밖으로 이동할 때
     
@@ -447,7 +447,7 @@
     
 //     const box1 = document.querySelector('#box1');
 
-//     function onMouseMove(e) { 
+//     function onMouseMove(e) {
 //         console.log(`client: (${e.clientX}, ${e.clientY})`);
 //         console.log(`page: (${e.pageX}, ${e.pageY})`);
 //         console.log(`offset: (${e.offsetX}, ${e.offsetY})`);
@@ -477,7 +477,7 @@
 //     // 버블링에 의해서 자식요소 끼리도 이벤트가 동작
 //     // function printEventData(e) {
 //     //     console.log(e.type);
-//     // } 
+//     // }
 
 //     // function printEventData(e) {
 //     //     if (e.target.classList.contains('cell')) {
@@ -498,13 +498,42 @@
 
 
 
-{ // 14. 키보드 이벤트
-    // keydown : 키보드 버튼을 누른 순간
-    // keypress : 키보드 버튼을 누른 순간 (출력값이 변하는 키에만 발생, 기능적인 컨트롤이나 쉬프트에서는 이벤트 발생 하지 않음, 영어가 아닌 경우에는 반응하지도 않음.)
-    // keyup : 키보드 버튼을 눌렀다 뗀 순간
+// { // 14. 키보드 이벤트
+//     // keydown : 키보드 버튼을 누른 순간
+//     // keypress : 키보드 버튼을 누른 순간 (출력값이 변하는 키에만 발생, 기능적인 컨트롤이나 쉬프트에서는 이벤트 발생 하지 않음, 영어가 아닌 경우에는 반응하지도 않음.)
+//     // keyup : 키보드 버튼을 눌렀다 뗀 순간
 
-    // KeyboardEvent.key : 이벤트가 발생한 버튼의 값 (사용자가 누른 키 값을 알려줌, 같은 위치여도 대소문자 구분)
-    // KeyboardEvent.code : 이벤트가 발생한 버튼의 키보드에서 물리적인 위치 (어떤 위치에 있는 키를 눌렀는지 알려준다. 대문자와 소문자 구분x, 위치 다르면 같은 shift여도 다름)
+//     // KeyboardEvent.key : 이벤트가 발생한 버튼의 값 (사용자가 누른 키 값을 알려줌, 같은 위치여도 대소문자 구분)
+//     // KeyboardEvent.code : 이벤트가 발생한 버튼의 키보드에서 물리적인 위치 (어떤 위치에 있는 키를 눌렀는지 알려준다. 대문자와 소문자 구분x, 위치 다르면 같은 shift여도 다름)
+// }
 
 
+
+{ // 15. input 태그 다루기
+    // 포커스 이벤트
+    // 다른 태그와 달리 input 태그는 입력의 역할을 하기에 사용자의 키보드나 마우스에 반응하는 특징이 있다. 
+    // 인풋창 입력시 파란 테두리 표시 같은 것이 사용자의 입력에 반응할 준비가 되었다는 표시이고 이를 포커스라 한다.
+
+    // focusin : 요소에 포커스가 되었을 때
+    // focusout : 요소에 포커스가 빠져나갈 때
+    // focus : 요소에 포커스가 되었을 때 (버블링 X)
+    // blur : 요소에 포커스가 빠져나갈 때 (버브링 X)
+    
+    const el = document.querySelector('#form');
+
+    function printEventType(e) { 
+        console.log('type:', e.type);
+        console.log('target', e.target);
+        console.log('---------')
+    }
+
+    el.addEventListener('focusin', printEventType);
+    el.addEventListener('focusout', printEventType);
+    
+
+    // 입력이벤트
+    // input : 사용자가 입력을 할 때
+    // change : 요소의 값이 변했을 때
+    el.addEventListener('input', printEventType);
+    el.addEventListener('change', printEventType);
 }
