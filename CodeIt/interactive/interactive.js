@@ -509,31 +509,70 @@
 
 
 
-{ // 15. input 태그 다루기
-    // 포커스 이벤트
-    // 다른 태그와 달리 input 태그는 입력의 역할을 하기에 사용자의 키보드나 마우스에 반응하는 특징이 있다. 
-    // 인풋창 입력시 파란 테두리 표시 같은 것이 사용자의 입력에 반응할 준비가 되었다는 표시이고 이를 포커스라 한다.
+// { // 15. input 태그 다루기
+//     // 포커스 이벤트
+//     // 다른 태그와 달리 input 태그는 입력의 역할을 하기에 사용자의 키보드나 마우스에 반응하는 특징이 있다. 
+//     // 인풋창 입력시 파란 테두리 표시 같은 것이 사용자의 입력에 반응할 준비가 되었다는 표시이고 이를 포커스라 한다.
 
-    // focusin : 요소에 포커스가 되었을 때
-    // focusout : 요소에 포커스가 빠져나갈 때
-    // focus : 요소에 포커스가 되었을 때 (버블링 X)
-    // blur : 요소에 포커스가 빠져나갈 때 (버브링 X)
+//     // focusin : 요소에 포커스가 되었을 때
+//     // focusout : 요소에 포커스가 빠져나갈 때
+//     // focus : 요소에 포커스가 되었을 때 (버블링 X)
+//     // blur : 요소에 포커스가 빠져나갈 때 (버브링 X)
     
-    const el = document.querySelector('#form');
+//     const el = document.querySelector('#form');
 
-    function printEventType(e) { 
-        console.log('type:', e.type);
-        console.log('target', e.target);
-        console.log('---------')
-    }
+//     function printEventType(e) { 
+//         console.log('type:', e.type);
+//         console.log('target', e.target);
+//         console.log('---------')
+//     }
 
-    el.addEventListener('focusin', printEventType);
-    el.addEventListener('focusout', printEventType);
+//     el.addEventListener('focusin', printEventType);
+//     el.addEventListener('focusout', printEventType);
     
 
-    // 입력이벤트
-    // input : 사용자가 입력을 할 때
-    // change : 요소의 값이 변했을 때
-    el.addEventListener('input', printEventType);
-    el.addEventListener('change', printEventType);
-}
+//     // 입력이벤트
+//     // input : 사용자가 입력을 할 때, 키보드 이벤트와 비슷해보이지만, 입력과 상관없는 기능키의 경우 반응하지 않음
+//     // change : 요소의 값이 변했을 때, 입력이 시작되었을때 값과 완료되었을 때 값 사이의 차이에 반응 (엔터키 혹은 포커스 아웃직전에 입력이 완료되었다고 판단)
+//     el.addEventListener('input', printEventType);
+//     el.addEventListener('change', printEventType);
+// }
+
+
+
+// { // 16. 스크롤 이벤트
+//     // css를 이용해 의도적으로 스크롤바를 만들지 않는 이상, 일반적인 경우 웹문서의 크기가 브라우저 창보다 클 때 스크롤바 자동 생성
+//     // 그래서 일반적으로 스크롤 이벤트는 브라우저를 대변하는 window객체에 이벤트 핸들러를 등록하는 경우가 많다.
+
+//     // function printEvent(e) { 
+//     //     console.log(e);
+//     //     console.log(window.scrollY);    // 웹문서 최상단에서 몇 px만큼 스크롤했는지 알려줌
+//     // }
+
+//     let lastScrollY = 0;
+    
+//     function printEvent(e) { 
+//         const STANDARD = 30;
+//         const nav = document.querySelector('#nav');
+//         const toTop = document.querySelector('#to-top');
+
+//         if (window.scrollY > STANDARD) { // 스크롤이 30px를 넘었을 때
+//             nav.classList.add('shadow');
+//             toTop.classList.add('show');
+//         } else { // 스크롤이 30px을 넘지 않았을 때
+//             nav.classList.remove('shadow');
+//             toTop.classList.remove('show');
+//         }
+
+//         // 스크롤 방향 감지
+//         if (window.scrollY > lastScrollY) { // 스크롤 방향이 아랫쪽 일 때
+//             nav.classList.add('lift-up');
+//           } else { // 스크롤 방향이 윗쪽 일 때
+//             nav.classList.remove('lift-up');
+//         }
+        
+//         lastScrollY = window.scrollY;
+//     }
+    
+//     window.addEventListener('scroll', printEvent);
+// }
