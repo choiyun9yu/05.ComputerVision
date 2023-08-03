@@ -436,23 +436,75 @@
 
 
 
-{ // 12. 마우스 이동 이벤트
-    // mousemove : 마우스 포인터가 이동할 때 
-    // mouseover : 마우스 포인터가 요소 밖에서 안으로 이동할 때
-    // mouseout : 마우스 포인터가 요소 안에서 밖으로 이동할 때
+// { // 12. 마우스 이동 이벤트
+//     // mousemove : 마우스 포인터가 이동할 때 
+//     // mouseover : 마우스 포인터가 요소 밖에서 안으로 이동할 때
+//     // mouseout : 마우스 포인터가 요소 안에서 밖으로 이동할 때
     
-    // MouseEvent.clientX, clientY : 화면에 표시되는 창 내 마우스 포인터 위치 반환
-    // MouseEvent.pageX, pageY : 웹 문서 전체 내 마우스 포인터 위치 반환
-    // MouseEvent.offsetX, offsetY : 이벤트가 발생한 요소 내의 마우스 포인터 위치 반환
+//     // MouseEvent.clientX, clientY : 화면에 표시되는 창 내 마우스 포인터 위치 반환
+//     // MouseEvent.pageX, pageY : 웹 문서 전체 내 마우스 포인터 위치 반환
+//     // MouseEvent.offsetX, offsetY : 이벤트가 발생한 요소 내의 마우스 포인터 위치 반환
     
-    const box1 = document.querySelector('#box1');
+//     const box1 = document.querySelector('#box1');
 
-    function onMouseMove(e) { 
-        console.log(`client: (${e.clientX}, ${e.clientY})`);
-        console.log(`page: (${e.pageX}, ${e.pageY})`);
-        console.log(`offset: (${e.offsetX}, ${e.offsetY})`);
-        console.log('------------------------------------');
-    }
+//     function onMouseMove(e) { 
+//         console.log(`client: (${e.clientX}, ${e.clientY})`);
+//         console.log(`page: (${e.pageX}, ${e.pageY})`);
+//         console.log(`offset: (${e.offsetX}, ${e.offsetY})`);
+//         console.log('------------------------------------');
+//     }
 
-    box1.addEventListener('mousemove', onMouseMove);
+//     box1.addEventListener('mousemove', onMouseMove);
+// }
+
+
+
+// { // 13. 마우스 이동 이벤트2
+//     // mousemove : 마우스 포인터가 이동할 때
+//     // mouseover : 마우스 포인터가 요소 밖에서 안으로 이동할 때
+//     // mouseout : 마우스 포인터가 요소 안에서 밖으로 이동할 때
+
+//     // MouseEvent.target : 이벤트가 발생한 요소
+//     // MouseEvent.relatedTarget : 이벤트가 발생하기 직전(또는 직후)에 마우스가 위치해 있던 요소
+
+//     // mouseenter는  mouseover와 비슷하고
+//     // mouseseleave는 mouseout과 비슷하다.
+//     // 차이점은 버블링이 일어나지 않는다는 것이다.
+
+
+//     const box2 = document.querySelector('#box2');
+    
+//     // 버블링에 의해서 자식요소 끼리도 이벤트가 동작
+//     // function printEventData(e) {
+//     //     console.log(e.type);
+//     // } 
+
+//     // function printEventData(e) {
+//     //     if (e.target.classList.contains('cell')) {
+//     //         e.target.classList.toggle('on');
+//     //     }
+//     // }
+
+//     function printEventData(e) {
+//         console.log('event', e.type);
+//         console.log('target', e.target);
+//         console.log('relatedTarget:', e.relatedTarget);
+//         console.log('-------------------------------------');
+//     }
+
+//     box2.addEventListener('mouseover', printEventData);
+//     box2.addEventListener('mouseout', printEventData);
+// }
+
+
+
+{ // 14. 키보드 이벤트
+    // keydown : 키보드 버튼을 누른 순간
+    // keypress : 키보드 버튼을 누른 순간 (출력값이 변하는 키에만 발생, 기능적인 컨트롤이나 쉬프트에서는 이벤트 발생 하지 않음, 영어가 아닌 경우에는 반응하지도 않음.)
+    // keyup : 키보드 버튼을 눌렀다 뗀 순간
+
+    // KeyboardEvent.key : 이벤트가 발생한 버튼의 값 (사용자가 누른 키 값을 알려줌, 같은 위치여도 대소문자 구분)
+    // KeyboardEvent.code : 이벤트가 발생한 버튼의 키보드에서 물리적인 위치 (어떤 위치에 있는 키를 눌렀는지 알려준다. 대문자와 소문자 구분x, 위치 다르면 같은 shift여도 다름)
+
+
 }
