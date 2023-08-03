@@ -268,28 +268,191 @@
 
 
 
-{ // 8. 이벤트 버블링 : 하나의 요소에 이벤트가 발생하게 되면, 그 요소의 할당된 이벤트 핸들러가 동작하고 
-                      // -> 같은 타입의 이벤트에 한해서 부모 요소의 핸들러도 동작한다. (최상단 윈도우 객체 만날 때 까지 반복)
-    const content = document.querySelector('#content');
-    const title = document.querySelector('#title');
-    const list = document.querySelector('#list');
-    const items = document.querySelectorAll('.item');
+// { // 8. 이벤트 버블링 : 하나의 요소에 이벤트가 발생하게 되면, 그 요소의 할당된 이벤트 핸들러가 동작하고
+//                       // -> 같은 타입의 이벤트에 한해서 부모 요소의 핸들러도 동작한다. (최상단 윈도우 객체 만날 때 까지 반복)
+//     // !주의 : 이벤트 객체의 target 프로퍼티는 최초의 이벤트가 발생한 요소를 나타내고,
+//     //         이벤트 객체의 currentTarget 프로퍼티는 현재 이벤트 핸들러가 동작하는 요소를 나타낸다.
+//     const content = document.querySelector('#content');
+//     const title = document.querySelector('#title');
+//     const list = document.querySelector('#list');
+//     const items = document.querySelectorAll('.item');
 
-    content.addEventListener('click', function () {
-        console.log('content Event');
-    });
+//     content.addEventListener('click', function () {
+//         console.log('content Event');
+//     });
     
-    title.addEventListener('click', function () {
-        console.log('title Event');
-    });
+//     title.addEventListener('click', function () {
+//         console.log('title Event');
+//     });
 
-    list.addEventListener('click', function () {
-        console.log('list Event');
-    });
+//     list.addEventListener('click', function () {
+//         console.log('list Event');
+//     });
 
-    for (let item of items) { 
-        item.addEventListener('click', function () {
-            console.log('item Event');
-        });
+//     for (let item of items) {
+//         item.addEventListener('click', function () {
+//             console.log('item Event');
+//             e.stopPropagation();    // 버블 멈추기 : 반드시 필요한 경우가 아니라면 버블링은 멈추는게 좋지 않다.
+//         });
+//     }
+// }
+
+// 캡쳐링 : 이벤트가 발생하면 가장먼저 window 객체에서부터 target 까지 이벤트 전파가 일어나는 것
+// 이후 target에 도달하면 등록된 이벤트 핸들러가 동작하고, 다시 window 객체로 이벤트가 전파되는 버블링단계를 거친다.
+
+
+
+// { // 9. 이벤트 위임(Event Delegation) : 자식요소에서 발생하는 이벤트를 부모 요소에서 다루는 것
+//     const list = document.querySelector('#list');
+    
+//     // 9-1. id가 list인 요소의 자식 요소에 토글로 classlist done 부여/회수
+//     // for (let item of list.children) {
+//     //     item.addEventListener('click', function (e) {
+//     //         e.target.classList.toggle('done');
+//     //     });
+//     // }
+//     // 단점 : 만약에 list에 새로운 요소를 추가하는 경우 그 요소들에는 이벤트리스너가 적용되지 않는다.
+//     //        그래서 매번 추가할 때마다 이벤트 핸들러를 새로 등록해야하는 번거로움이 존재한다.
+
+//     // 9-2. 이벤트 버블을 이용해 해결 가능!
+//     // list.addEventListener('click', function (e) {
+//     //     e.target.classList.toggle('done'); // target property가 이벤트 발생한 요소를 담고 있으니까 가능
+//     // });
+//     // 단점 : 자식 요소 뿐만 아니라 부모요소에도 이벤트 핸들러가 적용됨
+
+//     // 9-3. 조건문을 써서 자식 태그인 경우에만 이벤트 핸들러 적용되도록 함수 구성하면 된다.
+//     list.addEventListener('click', function (e) {
+//         // if (e.target.tagName === 'LI')
+//         if (e.target.classList.contains('item')) {
+//             e.target.classList.toggle('done');
+//         }
+//     });
+    
+//     const li = document.createElement('li');
+//     li.classList.add('item');
+//     li.textContent = '일기 쓰기'
+//     list.append(li);
+// }
+
+
+
+// { // 10. 브라우저 기본 동작
+//     // 대부분의 이벤트는 발생하는 순간 각 태그별 혹은 문서 전체적인 측면에서 브라우저가 기본적으로 갖고 있는 동작 수행
+//     // 앵커 태그는 눌렀을 때 페이지 이동, 체크박스 체크, 마우스 드래그, 우클릭 옵션창 등..
+//     // JS를 이용하면 브라우저의 기본 동작을 막을 수 있음
+
+//     const link = document.querySelector('#link');
+//     const checkbox = document.querySelector('#checkbox');
+//     const input = document.querySelector('#input');
+//     const text = document.querySelector('#text');
+
+//     // event.preventDefault
+//     link.addEventListener('click', function (e) {
+//         e.preventDefault();
+//         alert('지금은 이동할 수 없습니다.');
+//     });
+
+//     // 특정한 상황에서만 브라우저 기본동작 막기
+//     input.addEventListener('keydown', function (e) {
+//         if (!checkbox.checked) {
+//             e.preventDefault();
+//             alert('체크박스를 먼저 클릭해주세요.');
+//         }
+//     });
+
+//     // // 부분 마우스 우클릭 방지
+//     // text.addEventListener('contextmenu', function (e) {
+//     //     e.preventDefault();
+//     //     alert('마우스 오른쪽 클릭은 사용할 수 없습니다.');
+//     // });
+
+//     // 문서 전체 마우스 우클릭 방지
+//     document.addEventListener('contextmenu', function (e) {
+//         e.preventDefault();
+//         alert('마우스 오른쪽 클릭은 사용할 수 없습니다.');
+//     });
+// }
+
+
+
+// { // 11. 마우스 버튼 이벤트
+//     // MouseEvent.button <- 마우스 버튼 별로 이벤트 구분하고 싶을 때 사용
+//     // 0: 마우스 좌클릭
+//     // 1: 마우스 휠
+//     // 2: 마우스 우클릭
+
+//     // MouseEvent.type
+//     // click: 마우스 왼쪽 버튼을 눌렀을 때
+//     // contextmenu: 마우스 오른쪽 버튼을 눌렀을 때
+//     // dbclick: 동일한 위치에서 빠르게 두 번 click할 때
+//     // mousedown: 마우스 버튼을 누른 순간
+//     // mouseup: 마우스 버튼을 눌렀다가 땐 순간
+
+//     let timer = 0;
+
+// function printEventType(e) {
+// 	const EVENT_DURATION = 800;
+//     const eventTime = new Date();
+
+// 	if (timer === 0) {
+//     timer = new Date();
+// 	}
+
+// 	if (eventTime - timer > EVENT_DURATION) {
+//     console.log('--------------------------');
+// 	}
+
+//     if (e.target.id !== 'mouse') {
+//     e.preventDefault();
+//     }
+
+//     const btns = document.querySelector(`#btns`);
+//     const btn = document.querySelector(`#btn${e.button}`);
+//     btns.classList.add(`clicked-${e.button}`);
+//     btn.textContent = e.button;
+//     console.log(`${e.type} 이벤트가 발생했습니다.`);
+
+// 	if (e.type === 'dblclick') {
+// 		btns.className = 'dblclick';
+//     }
+
+//     function styleInit() {
+//         btns.className = '';
+//         btn.textContent = '';
+//     }
+
+//     setTimeout(styleInit, EVENT_DURATION);
+
+//     timer = eventTime;
+// }
+
+// document.addEventListener('click', printEventType);
+// document.addEventListener('contextmenu', printEventType);
+// document.addEventListener('dblclick', printEventType);
+// document.addEventListener('mouseup', printEventType);
+// document.addEventListener('mousedown', printEventType);
+
+// }
+
+
+
+{ // 12. 마우스 이동 이벤트
+    // mousemove : 마우스 포인터가 이동할 때 
+    // mouseover : 마우스 포인터가 요소 밖에서 안으로 이동할 때
+    // mouseout : 마우스 포인터가 요소 안에서 밖으로 이동할 때
+    
+    // MouseEvent.clientX, clientY : 화면에 표시되는 창 내 마우스 포인터 위치 반환
+    // MouseEvent.pageX, pageY : 웹 문서 전체 내 마우스 포인터 위치 반환
+    // MouseEvent.offsetX, offsetY : 이벤트가 발생한 요소 내의 마우스 포인터 위치 반환
+    
+    const box1 = document.querySelector('#box1');
+
+    function onMouseMove(e) { 
+        console.log(`client: (${e.clientX}, ${e.clientY})`);
+        console.log(`page: (${e.pageX}, ${e.pageY})`);
+        console.log(`offset: (${e.offsetX}, ${e.offsetY})`);
+        console.log('------------------------------------');
     }
+
+    box1.addEventListener('mousemove', onMouseMove);
 }
