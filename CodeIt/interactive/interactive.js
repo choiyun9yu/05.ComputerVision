@@ -155,43 +155,95 @@
 
 
 
-{ // 4. HTML 속성 다루기
-    // 브라우저가 HTML 문서를 해석할 때 DOM 객체가 만들어진다. 이때 HTML 태그들의 각 속성은 프로퍼티가 된다. 
-    // 단,  모든 HTML 속성이 요소노드의 프로퍼티로 생성되는 것은 아니다.
+// { // 4. HTML 속성 다루기
+//     // 브라우저가 HTML 문서를 해석할 때 DOM 객체가 만들어진다. 이때 HTML 태그들의 각 속성은 프로퍼티가 된다.
+//     // 단,  모든 HTML 속성이 요소노드의 프로퍼티로 생성되는 것은 아니다.
     
-    // HTML 속성 (HTML attribute)
-    const tomorrow = document.querySelector('#tomorrow');
-    const item = tomorrow.firstElementChild;
-    const link = item.firstElementChild;
+//     // HTML 속성 (HTML attribute)
+//     const tomorrow = document.querySelector('#tomorrow');
+//     const item = tomorrow.firstElementChild;
+//     const link = item.firstElementChild;
 
-    // id 속성
-    console.log(tomorrow);
-    console.log(tomorrow.id);
+//     // id 속성
+//     console.log(tomorrow);
+//     console.log(tomorrow.id);
 
-    // class 속성
-    console.log(item);
-    console.log(item.className);    // 클래스 속성은 className으로 변함
+//     // class 속성
+//     console.log(item);
+//     console.log(item.className);    // 클래스 속성은 className으로 변함
 
-    // href 속성
-    console.log(link);
-    console.log(link.href);
-    console.log(tomorrow.href);
+//     // href 속성
+//     console.log(link);
+//     console.log(link.href);
+//     console.log(tomorrow.href);
 
-    // elem.getAttribute('속성'): 속성에 접근하기, 표준 비표준관계없이 해당 태그의 모든 속성들에 접근 가능
-    console.log(tomorrow.getAttribute('href'));
-    console.log(item.getAttribute('class'));    // getAttribute로 접근할 땐 class 그대로 쓴다.
+//     // elem.getAttribute('속성'): 속성에 접근하기, 표준 비표준관계없이 해당 태그의 모든 속성들에 접근 가능
+//     console.log(tomorrow.getAttribute('href'));
+//     console.log(item.getAttribute('class'));    // getAttribute로 접근할 땐 class 그대로 쓴다.
 
-    // elem.setAttribute('속성', '값'): 속성 추가(수정)하기
-    tomorrow.setAttribute('class', 'list'); // 추가 : 기존에 없던 속성인 경우
-    link.setAttribute('href', 'https://www.codeit.kr'); // 수정 : 기존에 있는 속성인 경우
+//     // elem.setAttribute('속성', '값'): 속성 추가(수정)하기
+//     tomorrow.setAttribute('class', 'list'); // 추가 : 기존에 없던 속성인 경우
+//     link.setAttribute('href', 'https://www.codeit.kr'); // 수정 : 기존에 있는 속성인 경우
 
-    // elem.removeAttribute('속성'): 속성 제거하기
-    tomorrow.removeAttribute('href'); 
-    tomorrow.removeAttribute('class'); 
-}
+//     // elem.removeAttribute('속성'): 속성 제거하기
+//     tomorrow.removeAttribute('href');
+//     tomorrow.removeAttribute('class');
+// }
 
 
 
-{ // 5. 스타일 다루기
+// { // 5. 스타일 다루기
+//     const today = document.querySelector('#today');
+//     const tomorrow = document.querySelector('#tomorrow');
+    
+//     // 1. style 프로퍼티 : 단점, 태그에 style 속성으로 직접적으로 명시되어 우선순위도 높아지고, 같은 스타일을 여러 태그에 적용하기도 번거롭다.
+//     // today.children[0].style.textDecoration = 'line-through';    // stlye 속성은 카멜표기법을 이용해야한다. (text-decorateion -> textDecoration)
+//     // today.children[0].style.backgroundColor = '#DDDDDD';
+
+//     // 2. className 프로퍼티를 새로 할당 : 단점, 기존 클래스 이름을 덮어씌워버림
+//     // today.children[1].className = 'done';
+    
+//     // 3. classList : 클래스의 속성 값을 유사배열로 다루는 방법, add, remove, toggle 메소드 사용가능
+//     // console.log(today.classList);
+//     // console.log(today.children[1].classList);
+//     const item = tomorrow.children[1];
+//     item.classList.add('done', 'other');    // 클래스 추가
+//     item.classList.remove('other'); // 클래스 제거
+//     item.classList.toggle('done');  // 있으면 제거, 없으면 추가 // 2번째 파라미터로 true주면 추가만, false주면 제거만 한다.
+// }
+
+
+
+// { // 6. 버튼 클릭 이벤트
+//     // 이벤트 핸들러 등록하기
+//     let btn = document.querySelector('#myBtn');
+
+//     function event1() {
+//         console.log('Hi Codeit!');
+//     }
+
+//     function event2() {
+//         console.log('Hi again!');
+//     }
+
+//     // 6-1. html 태그에서 onclick 속성을 직접적으로 주는 방법
+//     // <button onclick="console.log('Hello Codeit!')">HTML Click!</button>
+
+//     // 6-2. onclick 프로퍼티 사용 : 단점, 새로운 이벤트 핸들러를 할당하면 덮어써서 기존 이벤트 사라짐
+//     // btn.onclick = function () {
+//     //     event1();
+//     // }
+
+//     // 6-3-1. 요소에 이벤트 추가 elem.addEventListener(event, handler) : 이벤트 등록하고 싶은 요소에 addEventListener 등록
+//     btn.addEventListener('click', event1);
+//     btn.addEventListener('click', event2);
+//     // 6-3-2. 요소에서 이벤트 제거
+//     btn.removeEventListener('click', event2);
+// };
+
+
+
+{ // 7. 이벤트 객체
+
 
 }
