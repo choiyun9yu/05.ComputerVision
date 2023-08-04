@@ -383,6 +383,26 @@
         console.log('some:', someReturn);
         console.log('every', everyReturn);
     }
+    { // 11. reduce : 
+        const numbers = [1, 2, 3, 4];
+
+        // 첫번째는 누산기로 직전에 동작한 콜백 함수가 리턴한 값을 전달 받는 파라미터이다.
+        // 그런데 첫번째 acc는 전달받을 직전 동작이 없다. 그래서 reduce의 두번째 파라미터로 
+        // 초기값 initialAccValue를 설정해준다.
+        // 두번째는 배열의 요소가 전달되고, 세번째는 인덱스, 네번째는 배열전체가 전달
+        numbers.reduce((acc, el, i, arr) => {
+            return nextAccValue;
+        }, initialAccValue);   
+
+        const sumAll = numbers.reduce((acc, el, i) => {
+            console.log(`${i}번 index의 요소로 콜백함수가 동작중입니다.`)
+            console.log('acc:', acc);
+            console.log('el:', el);
+            console.log('----------');
+            return acc + el;
+        }, 0);
+        console.log('sumAll:', sumAll);
+    }
 
 
 }
