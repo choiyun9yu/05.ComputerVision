@@ -362,12 +362,26 @@
     { // 10-3. filter : 특별한 조건을 만족하는 것만 추려서 배열을 만들어 준다.
         const apples = devices.filter((el) => el.brand === 'Apple');    // 조건식을 삽입하면 조건을 만족하는 경우 새로운 배열에 담긴다.
         console.log(apples);
-        // 그런데 filter 메소드는 항상 리턴 값이 배열이기 때문에 스프레드 같은 구문으로 배열을 벗겨낼 수 있다.
+        // 그런데 filter 메소드는 항상 리턴 값이 배열이기 때문에 요소가 하나라도 스프레드 같은 구문으로 배열을 벗겨내야한다.
+        // 조건을 만족하는 모든 값을 찾고 종료
         const myLaptop = devices.filter((el) => el.name === 'Gram');
-        console.log(...myLaptop)
+        console.log(...myLaptop);
     }
-    { // 10-4. find
+    { // 10-4. find : 반환 값이 배열이 아니고 배열의 요소 하나를 찾을 때 주로 씀 (조건 만족하는 값 하나만 찾으면 종료)
+        const myLaptop = devices.find((el) => el.name === 'Gram');
+        console.log(myLaptop);
+    }
+    { // 10-5. some과 every
+        const numbers = [1, 3, 5, 7, 9]
+        // some : 조건을 만족하는 요소가 1개 이상 있는지 확인 (맞는 것 1개만 찾으면 반복 종료)
+        // 만약 빈 배열이면 무조건 false 반환
+        const someReturn = numbers.some((el) => el > 5);
+        // every : 모든 요소가 조건을 만족하는지 확인 (틀린 것 1개라도 찾으면 반복 종료)
+        // 만약 빈 배열이면 무조건 true 반환
+        const everyReturn = numbers.every((el) => el > 5);
 
+        console.log('some:', someReturn);
+        console.log('every', everyReturn);
     }
 
 
