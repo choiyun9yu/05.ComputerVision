@@ -312,11 +312,65 @@
             console.log(e.name);
             console.log(e.message);
         }
+    }
+}
+
+
+
+{ // 10. 배열 메소드
+    {
+        // 10-1. forEach : 아규먼트로 콜백 함수를 작성해주면 콜백함수의 첫번째 파라미터로
+        //                 배열의 요소를 순서대로 하나씩 전달하면서, 매번 함수를 실행하는 원리로 동작한다.
+        //                 그래서 반드시 파라미터 하나가 필요하다. (콜백함수 당연히 에로우 펑션으로도 작성가능)
+        //                 두번째 파라미터를 입력하면 인덱스가 인자로 들어온다.
+        //                 세번째 파라미터를 입력하면 forEach 메소드를 호출한 배열이 전달된다.
+        //                 반환값은 undefined 이다.
+        const members = ['영훈', '윤수', '동욱', '태호'];
+        for (let member of members) { 
+            console.log(`${member}님이 입장하셨습니다.`)
+        }
+
+        members.forEach((member, i, arr) => {
+            console.log(`${member}님이 ${i}번째로 입장하셨습니다.`);
+        });
+    }
+    {
+        // 10-2. map : forEach와 거의 같은 방식으로 동작한다.
+        //             차이점은 각각의 리턴값으로 구성된 새로운 배열이 이 메소드의 결과로 반환된다는 것
+        const firstNames = ['영훈', '윤수', '동욱', '태호'];
+        const lastNames = ['강', '이', '손', '성'];
+
+        const fullNames = firstNames.map((firstName, i) => lastNames[i] + firstName);
+
+        console.log(fullNames); // ['강영훈', '이윤수', '손동욱', '성태호']
+        // 단순한 반복 작업은 forEach, 반복작업 결과 배열 리턴은 map 사용
+    }
+    
+    const devices = [
+        { name: 'GalaxyNote', brand: 'Samsung' },
+        { name: 'MacbookPro', brand: 'Apple' },
+        { name: 'iPad', brand: 'Apple' },
+        { name: 'GalaxyWatch', brand: 'Samsung' },
+        { name: 'iMac', brand: 'Apple' },
+        { name: 'GalaxyBuds', brand: 'Samsung' },
+        { name: 'Gram', brand: 'LG' },
+        { name: 'GalaxyBook', brand: 'Samsung' },
+        { name: 'SurfacePro', brand: 'Microsoft' },
+        { name: 'ZenBook', brand: 'Asus' },
+        { name: 'MacbookAir', brand: 'Apple' },
+    ];
+    { // 10-3. filter : 특별한 조건을 만족하는 것만 추려서 배열을 만들어 준다.
+        const apples = devices.filter((el) => el.brand === 'Apple');    // 조건식을 삽입하면 조건을 만족하는 경우 새로운 배열에 담긴다.
+        console.log(apples);
+        // 그런데 filter 메소드는 항상 리턴 값이 배열이기 때문에 스프레드 같은 구문으로 배열을 벗겨낼 수 있다.
+        const myLaptop = devices.filter((el) => el.name === 'Gram');
+        console.log(...myLaptop)
+    }
+    { // 10-4. find
 
     }
 
 
 }
-
 
 
