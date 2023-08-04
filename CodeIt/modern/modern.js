@@ -114,6 +114,8 @@
     // (4) 애로우 펑션에선 arguments 객체를 사용할 수없다. / rest parameter는 가능
     // (5) 애로우 퐁션에서 this는 애로우 펑션이 동작하기 직전의 this 값을 담고 있다.
     //     일반함수와 this 동작 방식이 다름에 유의하자.
+    
+    // 3-8. (삼항 연산자) 조건 ? truthy 할 때 표현식 : falsy 할 때 표현식
 }
 
 
@@ -148,4 +150,140 @@
 
 
 
-// 5. 
+{ // 5. Spread 구문(Spread Syntax)
+    { // 5-1. 배열복사1
+        const numbers = [1, 2, 3];
+        console.log(...numbers);    // 대괄호가 벗겨지고 각각의 개별 값으로 펼처준다.
+
+        const webPublishing = ['HTML', 'CSS'];
+        const interactiveWeb = webPublishing;
+
+        interactiveWeb.push('JavaScript');
+
+        console.log(webPublishing);     // ['HTML', 'CSS', 'JavaScript']
+        console.log(interactiveWeb);    // ['HTML', 'CSS', 'JavaScript']
+    }
+    { // 5-2. 배열복사2
+        const webPublishing = ['HTML', 'CSS'];
+        const interactiveWeb = webPublishing.slice();   // 이렇게 복사해야함
+
+        interactiveWeb.push('JavaScript');
+
+        console.log(webPublishing);     // ['HTML', 'CSS']
+        console.log(interactiveWeb);    // ['HTML', 'CSS', 'JavaScript']
+    }
+    { // 5-3. 배열복사3
+        const webPublishing = ['HTML', 'CSS'];
+        const interactiveWeb = [...webPublishing, 'JavaScript'];
+
+        console.log(webPublishing);     // ['HTML', 'CSS']
+        console.log(interactiveWeb);    // ['HTML', 'CSS', 'JavaScript']
+    }
+    { // 5-4. 배열 병합
+        const arr1 = [1, 2, 3];
+        const arr2 = [4, 5, 6];
+
+        const arr3 = [...arr1, ...arr2];
+        console.log(arr3);  // [1, 2, 3, 4, 5, 6]
+    }
+    { // 5-5. 전달할 함수의 아규먼트가 여러개 일 때 배열로 묶은뒤 스프래드로 펼쳐서 한번에 전달 가능.
+        const args = [1, 2, 3]
+        function funcSum(a, b, c) {
+            return a + b + c
+        }
+        funcSum(...args); // 이러면 인자로 1, 2, 3, 넣은것과 같음
+    }
+    { // 5-6. 스프레드를 {}로 감싸서 객체로 만들면
+        // 인덱스를 key값으로, 배열의 요소를 value로 하는 객체(JSON)가 만들어진다.
+        const arr = ['hello', 'world'];
+        const obj = { ...arr }; // {0:'hello', 1:'world'};
+    }
+}
+
+
+
+{ // 6. 모던한 프로퍼티 표기법
+    { // 6-1. 
+        const title = 'Codeit';
+        const birth = 2017;
+        const job = '프로그래밍 강사';
+    
+        const user = {  // 프로퍼티의 이름과, 변수의 이름이 같은 경우 아래 처럼 생략해서 객체 생성 가능
+            title,      // 필드값 뿐만아니라 메소드도 생략가능
+            birth,
+            job,
+            // 메소드 축약형 표현
+            funcName() { 
+                return 'something'
+            }
+        }
+    }
+    { // 6-2. 계산된 프로퍼티
+        // const user = {
+        //     [표현식] : 값,
+        // }
+    
+        const propertyName = 'birth';
+        const getJob = () => 'job';
+
+        const user = {
+            ['Code' + 'it']: 'value',   // 연산식을 대괄호로 묶으면 연산 값이 프로퍼티 이름이 된다.
+            [propertyName]: 2017,   // 변수를 대괄호로 묶으면 변수 값이 프로퍼티 이름이 된다.
+            [getJob()]: '프로그래밍 강사'   // 함수를 대괄호로 묶으면 함수 리턴 값이 프로퍼티 이름이 된다.
+        };
+
+        console.log(user);  // {Codeit:"value", birth:2017, job:"프로그래밍 강사"}
+    }
+}
+
+
+
+{ // 7. 옵셔널 체이닝 (Optional Chaining)
+    // 일반적으로 객체의 프로퍼티는 점 표기법으로 접근
+    function printCatName(user) { 
+        // 옵셔널 체이닝 연산자 ?. 왼편이 undefiend or null 이면 그다음 프로퍼티값을 리턴하지 않고, 그렇지 않은 경우에는 undefined를 반환하는 문법
+        console.log(user.cat?.name ?? '함께 지내는 고양이가 없습니다.');
+    }
+}
+
+
+
+{ // 8. 구조분해(Destructuring)
+    { // 1. 배열
+        const rank = ['효준', '유나', '민환', '재하', '규식'];
+        // const macbook = rank[0]; // 효준
+        // const ipad = rank[1] // 유나
+        // const airpods = rank[2] // 민환
+        // const coupon = rank[3] // 재하
+        const [macbook, ipad, airpods, coupon] = rank;  // 변수명을 배열형태로 주면 배열을 분해해서 하나씩 할당
+        
+        const rank = ['효준', '유나', '민환', '재하', '규식'];
+        const [macbook, ipad, airpods, ...coupon] = rank;   // 넘치는 요소는 coupon에 배열로 할당
+        
+        const rank = ['유나', '효준', '민환'];
+        const [macbook, ipad, airpods, coupon = '없음'] = rank;
+
+        console.log(macbook);
+        console.log(ipad);
+        console.log(airpods);
+        console.log(coupon);
+
+        [macbook, ipad] = [ipad, macbook]   // 서로 변수값 스왑된다.
+    }
+
+
+    { // 2. 객체
+        const macbook = {
+        title: '맥북 프로 16형',
+        price: 3690000,
+        memory: '16 GB',
+        storage: '1TB SSD 저장 장치',
+        display: '16형 Retina 디스플레이',
+    }}
+
+
+
+}
+
+
+
