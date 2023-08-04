@@ -249,38 +249,71 @@
 
 
 { // 8. 구조분해(Destructuring)
-    { // 1. 배열
-        const rank = ['효준', '유나', '민환', '재하', '규식'];
-        // const macbook = rank[0]; // 효준
-        // const ipad = rank[1] // 유나
-        // const airpods = rank[2] // 민환
-        // const coupon = rank[3] // 재하
-        const [macbook, ipad, airpods, coupon] = rank;  // 변수명을 배열형태로 주면 배열을 분해해서 하나씩 할당
+    { // 8-1. 배열
+        // const rank = ['효준', '유나', '민환', '재하', '규식'];
+        // // const macbook = rank[0]; // 효준
+        // // const ipad = rank[1] // 유나
+        // // const airpods = rank[2] // 민환
+        // // const coupon = rank[3] // 재하
+        // const [macbook, ipad, airpods, coupon] = rank;  // 변수명을 배열형태로 주면 배열을 분해해서 하나씩 할당
         
-        const rank = ['효준', '유나', '민환', '재하', '규식'];
-        const [macbook, ipad, airpods, ...coupon] = rank;   // 넘치는 요소는 coupon에 배열로 할당
+        // const rank = ['효준', '유나', '민환', '재하', '규식'];
+        // const [macbook, ipad, airpods, ...coupon] = rank;   // 넘치는 요소는 coupon에 배열로 할당
         
-        const rank = ['유나', '효준', '민환'];
-        const [macbook, ipad, airpods, coupon = '없음'] = rank;
+        // const rank = ['유나', '효준', '민환'];
+        // const [macbook, ipad, airpods, coupon = '없음'] = rank;
 
-        console.log(macbook);
-        console.log(ipad);
-        console.log(airpods);
-        console.log(coupon);
+        // console.log(macbook);
+        // console.log(ipad);
+        // console.log(airpods);
+        // console.log(coupon);
 
-        [macbook, ipad] = [ipad, macbook]   // 서로 변수값 스왑된다.
+        // [macbook, ipad] = [ipad, macbook]   // 서로 변수값 스왑된다.
     }
-
-
-    { // 2. 객체
+    { // 8-2. 객체
         const macbook = {
-        title: '맥북 프로 16형',
-        price: 3690000,
-        memory: '16 GB',
-        storage: '1TB SSD 저장 장치',
-        display: '16형 Retina 디스플레이',
-    }}
+            title: '맥북 프로 16형',
+            price: 3690000,
+            memory: '16 GB',
+            storage: '1TB SSD 저장 장치',
+            display: '16형 Retina 디스플레이',
+        };
 
+        // const title = macbook.title;
+        // const price = macbook.price;
+        // const { title, price } = macbook;   // 배열 분해시 [], 객체 분해시 {} // 변수이름과 객체 내 프로퍼티 이름 매칭해서 분해된다.
+        // const { title, ...rest } = macbook; // 앞쪽에 우선 매칭되는 프로퍼티 할당하고 나머지는 rest에 할당
+        // const { title, color = 'silver' } = macbook;    // 객체 내 프로퍼티가 없는 변수이름이 있으면  undefined를 출력하고, 기본 값을 설정해둘 수도 있다.
+        // const { title: product, price: cost } = macbook;    // 객체 내 title을 product 변수에 할당, 객체 내 price 프로퍼티를 cost 변수에 할당.
+
+        // console.log(title);
+        // console.log(price);
+    }
+}
+
+
+
+{ // 9. 에러
+    // 9-1. 자바스크립트는 에러가 발생하면 에러에 대한 정보가 담긴 에러 객체를 생성한다.
+    //      에러 객체에는 에러 name 프로퍼티와, 에러 내용을 담고 있는 message 프로퍼티가 존재한다.
+    // 자주 발생하는 에러 : ReferenceError, TypeError, SyntaxError(문법 에러는 코드 실행하기도 전에 에러 발생시킨다.)
+    // 예외처리는 실행이 가능한 에러를 다루기 때문에 문법 에러는 예외처리로 다룰 수 없다.
+
+    { // 9-2. 의도적으로 에러 발생시키기
+        const error = new TypeError('타입 에러가 발생했습니다.');   // 에러 정의하는 코드
+        throw error;    // 에러 발생시키는 코드
+    }
+    { // 9-3. try catch 문
+        try {
+            //코드
+        } catch (error) { // 에러 발생시 생성되는 error 객체가 cath 문의 파라미터로 전달.   // 이름은 e, err, 뭐로 짓든 상관 없음
+            // 에러가 발생했을 때 동작할 코드
+            console.error(e);       // console.error() 메소드는 에러처럼 출력해준다.
+            console.log(e.name);
+            console.log(e.message);
+        }
+
+    }
 
 
 }
