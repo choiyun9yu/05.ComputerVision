@@ -20,3 +20,15 @@ import { 변수명 as 변경할이름, 함수명 } from '경로.js';
 
 
 // 4. 한꺼번에 다루기
+
+
+
+// 5.  export default 
+// js파일 내에서 단 한버만 사용할 수 있음. 
+export default 'codeit';
+// 임포트 할 때도 default로 임포트 되는데 이 때 default 그대로는 못쓰고 as로 별칭을 달아줘야한다.
+import {default as codeit} from '경로.js';
+// as 부분을 생략하고 쓸수도 있다. 
+import codeit, {others} from '경로.js';
+// 만약 *와일드카드를 써서 임포트 된 경우 와일드카드별칭.default로 사용할 수 있다.
+// export 할 때 export default {title, func}; 이런식으로 입력하면 default 객체의 프로퍼티로 변수나 함수를 export 할 수 있다.
