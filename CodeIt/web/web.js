@@ -140,3 +140,39 @@ fetch('https://www.google.com')
 
 
 // 7. 비동기 통신
+{ 
+    console.log('Start!');
+
+    fetch('https://jsonplaceholder.typicode.com/users') // 비동기실행
+        .then((response) => response.text())    // 콜백은 서버로부터 리스폰스 받았을 때 실행된다.
+        .then((result) => { console.log(result); });    // then메소드는 콜백을 등록만하고 다음 줄로 넘어간다.(실행여부 무관)
+    
+    console.log('End');
+}
+    { // 7-1. setTimeout 함수 : 특정 함수의 실행을 원하는 시간 만큼 뒤로 미루기 위해 사용하는 함수
+        console.log('a');
+        setTimeout(() => { console.log('b'); }, 2000);  // 마이크로초 단위여서 1000을 입력하면 1초 딜레이된다.
+        console.log('c');
+    }
+    { // 7-2. setInterval 함수 : 특정 콜백을 일정한 시간 간격으로 실행하도록 등록하는 함수
+        console.log('a');
+        setInterval(() => { console.log('b'); }, 2000); // 2초간격으로 반복해서 실행된다.
+        console.log('c');
+    }
+    { // 7-3. addEventListner메소드 : DOM 객체의 메소드, 특정 이벤트가 발생했을 때 실행할 콜백을 등록할 메소드
+        btn.onclick = function (e) { // 해당 이벤트 객체가 파라미터 e로 넘어옵니다.
+            console.log('Hello Codeit!');
+        };
+        // 또는 arrow function 형식으로 이렇게 나타낼 수도 있습니다. 
+        btn.onclick = (e) => {
+            console.log('Hello Codeit!');
+        };
+
+        btn.addEventListener('click', function (e) { // 해당 이벤트 객체가 파라미터 e로 넘어옵니다.
+            console.log('Hello Codeit!');
+        });
+        // 또는 arrow function 형식으로 이렇게 나타낼 수도 있습니다.
+        btn.addEventListener('click', (e) => {
+            console.log('Hello Codeit!');
+        });
+    }
