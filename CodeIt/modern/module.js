@@ -20,7 +20,18 @@ import { 변수명 as 변경할이름, 함수명 } from '경로.js';
 
 
 // 4. 한꺼번에 다루기
+export { 변수명, 함수명 };  // export 할 때 as 키워드로 이름 미리 바꿀 수 있다. 
 
+import * as 모듈이름 from '경로.js';
+모듈이름.변수명
+모듈이름.함수명
+
+
+// // 5. export default
+// // export 키워드 뒤에 default를 붙이면 반드시 하나의 대상만 내보낼 수 있게 된다.
+// export default 'codeit';   // 이런식으로 값 하나만 딸랑 내보낼 수도 있다.
+// // 주의할점은 default 키워드는 js파일 내부에서 단 한번만 사용가능하다는 것이다.
+// import { default as 새이름 } from '경로.js'; // 임포트시 default는 반드시 이름을 바꿔야한다.
 
 
 // 5.  export default 
