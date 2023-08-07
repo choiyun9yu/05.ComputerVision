@@ -230,7 +230,78 @@ fetch('https://www.google.com')
 }
 
 
-// 10. finally 메소드 :
-    //
-    //
-{ }
+// 10. finally 메소드 : 프로미스 상태에 상관없이 항상 실행하고 싶은 코드가 있을때 사용
+    // 딱히 파라미터가 필요없다.
+{
+    fetch('https://jsonplaceholder.typicode.com/users')
+        .then((response) => response.text())
+        .then((result) => { console.log(result); })
+        .catch((error) => {
+            console.log(error);
+            throw new Error('from catch method');   // 에러를 처리하는 catch 메소드에서 에러가 발생하더라도
+        })
+        .finally(() => { console.log('exit'); } );  // finally 메소드는 실행된다. (정상이든 최악이든 항상 실행)
+}
+
+
+// 11. 직접 만들어보는 Promise 객체
+    // Promisify : 전통적 형식의 비동기 실행 함수를 사용하는 코드를 Promise 기반의 코드로 변환하기 위해 사용
+{ // 11-1. 프로미스 객체 생성코드
+    const p = new Promise((resolve, reject) => {
+        // executor 함수 -> resolve는 생성된 프로미스 상태를 fulfiled로 만들 수 있는 함수가 연결
+        //               -> reject는 생성된 프로미스 상태를 rejected로 만들 수 있는 함수가 연결
+        setTrimeout(() => { resolve('success'); }, 2000);   // resolve안에 넣은 값이 작업 성공 결과가 된다.
+    });
+    p.then((result) => { console.log(result); });   // 2초 후 success 출력
+
+    const p2 = new Promise((resolve, reject) => {
+        setTrimeout(() => { reject('fail'); }, 2000);   // reject 안에 넣은 값이 작업 실패 정보가 된다.
+    });
+    p2.catch((error) => { console.log(error); });   // 2초 후 fail 출력
+}
+{ // 11-2. 이미 상태가 결정된 Promise 객체 만들기
+    // fulfiled 상태의 Promise 객체 만들기
+    const p = Promise.resolve('success');
+    // rejected 상태의 Promise 객체 만들기
+    const p2 = Promise.reject(new Error('fail'));
+}
+{ // 11-3. all 메소드
+    // all 메소드는 배열 안에 있는 모든 Promise 객체가 fulfilled 상태가 될 때까지 기다린 후 fulfilled 상태가 된다.
+    // 각 Promise 객체의 작업 성공 결과들로 이루어진 배열을, 그 작업 성공 결과로 갖게 된다.
+    // 1번 직원 정보
+    const p1 = fetch('https://learn.codeit.kr/api/members/1').then((res) => res.json());
+    // 2번 직원 정보
+    const p2 = fetch('https://learn.codeit.kr/api/members/2').then((res) => res.json());
+    // 3번 직원 정보
+    const p3 = fetch('https://learn.codeit.kr/api/members/3').then((res) => res.json());
+    Promise
+    .all([p1, p2, p3]) 
+    
+    .then((results) => {
+        console.log(results); / Array : [1번 직원 정보, 2번 직원 정보, 3번 직원 정보]
+    });
+}
+{ // 11-4. race 메소드
+    // race 메소드 내 배열 중 가장 먼저 fulfilled 상태 또는 rejected 상태가 된 Promise 객체와 같은 상태가 된다.
+    const p1 = new Promise((resolve, reject) => {
+        setTimeout(() => resolve('Success'), 1000);
+    });
+    const p2 = new Promise((resolve, reject) => {
+        setTimeout(() => reject(new Error('fail')), 2000);
+    });
+    const p3 = new Promise((resolve, reject) => {
+        setTimeout(() => reject(new Error('fail2')), 4000);
+    });
+    Promise
+        .race([p1, p2, p3]) 
+        .then((result) => {
+          console.log(result); // hello 출력
+        })
+        .catch((value) => {
+        console.log(value);
+        });
+
+}
+
+
+// 12. axios
