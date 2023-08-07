@@ -143,7 +143,7 @@ fetch('https://www.google.com')
 { 
     console.log('Start!');
 
-    fetch('https://jsonplaceholder.typicode.com/users') // 비동기실행
+    fetch('https://jsonplaceholder.typicode.com/users') // 비동기실행, promise 객체 리턴
         .then((response) => response.text())    // 콜백은 서버로부터 리스폰스 받았을 때 실행된다.
         .then((result) => { console.log(result); });    // then메소드는 콜백을 등록만하고 다음 줄로 넘어간다.(실행여부 무관)
     
@@ -176,3 +176,44 @@ fetch('https://www.google.com')
             console.log('Hello Codeit!');
         });
     }
+
+
+// 8. Promise : 작업에 관한 '상태 정보'를 가지고 있는 객체
+    // pending : 작업 진행중
+    // fulfiled : 작업 성공
+    // rejected : 작업 실패
+{ // 8-1. Promise Chaining
+    fetch('https://jsonplaceholder.typicode.com/users') // promise 객체(작업에 관한 '상태 정보' 담은 객체) 리턴
+    // 작업이 성공하면, promise 객체는 그 성공 결과도 함께 가진다.
+    // 작업이 실패하면, promise 객체는 작업 실패 이유도 함께 가진다.
+        .then((response) => response.text())    // then은 프로미스객체의 메소드(프로미스가 pending -> fulfiled가 될때 실행)
+        .then((result) => { console.log(result); });   
+        // Promise Chaining : then 메소드 뒤에 then메소드를 이어 붙이는 것
+        // then 메소드는 새로운 프로미스 객체를 리턴한다.
+        // 프로미스 객체를 리턴하는 경우 : 콜백이 리턴한 프로미스와 동일한 상태와 결과를 갖게 된다.
+        // 프로미스 객체가 아닌 것을 리턴하는 경우 : then 메소드가 리턴했던 프로미스 객체는 fulfiled가 되고, 콜백의 리턴값을 작업 성공 결과로 갖게된다.
+        // .json()과 .text()는 프로미스 객체를 리턴하는 메소드이다. 
+    
+        // Promise Chaining이 필요한 경우
+        // 비동기 작업을 순차적으로 수행해야 할 때, 전체 코드를 깔끔하게 나타내기 위해 사용
+    console.log('Start!');
+    fetch('https://jsonplaceholder.typicode.com/users') // 첫번째 작업
+        .then((response) => response.text())
+        .then((result) => {
+            const users = JSON.parse(result);
+            const { id } = users[0];
+            return fetch(`https://jsonplaceholder.typicode.com/posts?userId=${id}`);    // 두번째 작업
+        })  // 두번째 작업은 첫번째 작업이 먼저 이루어져야 가능한 작업, (이렇게 순차적 작업이 필요할때 프로미스 체이닝 한다.)
+        .then((response) => response.text())
+        .then((posts) => {
+            console.log(posts);
+        });
+    console.log('End');
+}
+{ // 8-2. rjected
+    fetch('https://jsonplaceholder.typicode.com/users')
+        // 콜백이 두개 들어가 있다. 첫번째 콜백은 프로미스 객체가 fulfiled 되었을 때 실행 -> 작업 결과물 넘어온다.
+        // 두번째 콜백은 프로미스 상태가 rejected 되었을 때 실행 -> 작업 실패의 정보가 넘어온다.
+        .then((response) => response.text(), (error) => { console.log(error); })
+        .theon((result) => { console.log(result); });
+}
