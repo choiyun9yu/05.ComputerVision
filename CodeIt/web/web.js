@@ -217,3 +217,20 @@ fetch('https://www.google.com')
         .then((response) => response.text(), (error) => { console.log(error); })
         .theon((result) => { console.log(result); });
 }
+
+
+// 9. catch 메소드 : 프로미스 객체가 rejected 상태가 되면 실행할 콜백함수 넣는 메소드
+    // catch 메소드는 then 메소드를 살짝 변형시킨 것에 불과(then 메소드의 첫번째 파라미터에 undefined를 넣고 두번째 파라미터만 넣은것과 같다.)
+    // catch 메소드는 마지막에 써야한다. catch 다음에 있는 then 메소드에서 에러가 발생하면 처리할 수 없기 때문
+{ 
+    fetch('https://jsonplaceholder.typicode.com/users')
+        .then((response) => response.text())
+        .then((result) => { console.log(result); })
+        .catch((error) => { console.log(error); }); // catch() 메소드는 fetch가 rejected 상태가 되면 실행할 콜백을 등록하는 메소드
+}
+
+
+// 10. finally 메소드 :
+    //
+    //
+{ }
