@@ -305,3 +305,64 @@ fetch('https://www.google.com')
 
 
 // 12. axios
+{ // axios 패키지에서 제공하는 axios 객체를 사용해서 GET 리퀘스트를 보내고 그 리스폰스를 받는 코드
+    axios
+        .get('https://jsonplaceholder.typicode.com/users')  // axios.get 부분만 fetch로 바꾸면 fetch함수와 비슷
+        .then((response) => {
+        console.log(response);
+        })
+        .catch((error) => {
+        console.log(error);
+        });
+    // 다만, axios 객체에는 fetch 함수에는 없는 다음과 같은 몇 가지 기능 및 장점들이 있다.
+        // 모든 리퀘스트, 리스폰스에 대한 공통 설정 및 공통된 전처리 함수 삽입 가능
+        // serialization, deserialization을 자동으로 수행
+        // 특정 리퀘스트에 대해 얼마나 오랫동안 리스폰스가 오지 않으면 리퀘스트를 취소할지 설정 가능(request timeout)
+        // 업로드 시 진행 상태 정보를 얻을 수 있음
+        // 리퀘스트 취소 기능 지원
+}
+
+
+// 13. async(어싱크)/await(어웨잇) 구문 : 프로미스 객체를 다루던 기존 코드를 더 깔끔하게 작성하는 문법
+{ 
+    // fetch('https://jsonplaceholder.typicode.com/users')
+    //     .then((response) => response.text())
+    //     .then((result) => { console.log(result); });
+
+    // async; asynchronous, 비동기 :  함수 안에 비동기적으로 실행될 부분이 있다는 것을 의미 
+    // await, 기다린다 : 뒤에 붙은 코드를 실행하고 그 코드가 리턴하는 프로미스 객체의 상태가 fulfiled 되거나 rejected될 때 까지 기다려준다.
+    //                   await 키워드는 async 함수 안에서만 사용할 수 있다.
+    async function fetchAndPrint() { 
+        console.log(2);
+        const response = await fetch('https://jsonplaceholder.typicode.com/users');
+        // await을 만나면 일단 그 뒤의 코드를 실행하고, 코드의 흐름은 현재 함수가 호출된 곳으로 가게된다.
+        // 현재 함수가 호출된 곳에서 코드를 쭉 실행하고 await 뒤의 코드가 이미 fulfiled 상태라면 그대로 진행
+        // 아직 pending 상태면 기다렸다가 진행한다.
+        console.log(7);
+        const result = await response.text();
+        console.log(result);
+        // 함수 내부 비동기 실행 -> 함수를 실행하다가 함수 바깥의 코드를 실행하고 돌아오기 때문
+        //                          await이 존재하면 코드가 보이는 순서대로 실행되는 것이 아니다.  
+    }
+
+    console.log(1);
+    fetchAndPrint();
+    console.log(3);
+    console.log(4);
+    console.log(5);
+    console.log(6);
+}
+{ // rejected 대비 -> try/catch문 사용
+    async function fetchAndPrint() { 
+        try {
+            // 존재하지 않는 url로 rejected 상태 유발 
+            const response = await fetch('https://jsonplaceholder.typicode.commmmm/users');
+            const result = await response.text();
+            console.log(result);
+        } catch (error) { 
+            console.log(error);
+        }
+    }
+
+    fetchAndPrint();
+}
