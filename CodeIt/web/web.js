@@ -278,7 +278,7 @@ fetch('https://www.google.com')
     .all([p1, p2, p3]) 
     
     .then((results) => {
-        console.log(results); / Array : [1번 직원 정보, 2번 직원 정보, 3번 직원 정보]
+        console.log(results); // Array : [1번 직원 정보, 2번 직원 정보, 3번 직원 정보]
     });
 }
 { // 11-4. race 메소드
@@ -352,7 +352,7 @@ fetch('https://www.google.com')
     console.log(5);
     console.log(6);
 }
-{ // rejected 대비 -> try/catch문 사용
+{ // rejected 대비 -> try/catch문 사용 (finally 사용 가능)
     async function fetchAndPrint() { 
         try {
             // 존재하지 않는 url로 rejected 상태 유발 
@@ -365,4 +365,40 @@ fetch('https://www.google.com')
     }
 
     fetchAndPrint();
+}
+{ // async 함수는 항상 프로미스 객체를 리턴한다.
+    async function fetchAndPrint() { 
+        return 3;   // 작업 성공 결과3을 가진 fulfiled 상태의 프로미스 객체 리턴 
+    }
+
+    fetchAndPrint();    
+
+    // 아무값도 리턴하지 않는 경우
+    // 아무값도 리턴하지 않으면 자바스크립트는 undefined를 리턴한 것으로 간주한다.
+    // 따라서 fulfilled 상태이면서 undefined를 작업 성공 결과로 가진 Promise 객체가 리턴된다.
+
+    // async 함수 내부에서 에러가 발생했을 때
+    // rejected 상태이면서, 해당 에러 객체를 작업 실패 정보로 가진 Promise 객체가 리턴 된다.
+}
+{ // !async 함수 주의사항
+    { // bad code : 순차적 작업으로 오래걸림
+        async function getResponses(urls) {
+            for(const url of urls){
+                const response = await fetch(url);
+                console.log(await response.text());
+            }
+        }
+    }
+    { // good code  
+        async function fetchUrls(urls){
+            for(const url of urls){
+              (async () => { // 추가된 부분!
+                const response = await fetch(url);
+                console.log(await response.text());
+              })(); // 추가된 부분!
+            }
+        }
+    }
+
+
 }
