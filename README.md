@@ -1,64 +1,3 @@
-# Javascript
-
-## 1. 변수
-
-### 1.1 데이터 타입
-
-자바 스크립트의 변수는 기본형(primitive)과 참조형(reference) 두 가지가 있다.
-자바 스크립트에서 기본형의 식별자와 참조형의 식별자 모두 할당하는 값이 저장된 메모리의 주소값을 참조한다.
-이때 만약 기존 메모리에 존재하는 값을 변수에 대입할 경우, 기존재하는 메모리 주소를 참조하고 그렇지 않으면 새로 생성한다.
-식별자에게 참조되는 경우를 count로 계산하고 만약 count가 0이 되면 GC에 의해 메모리 해제된다.
-
-기본형과 참조형의 차이는 한 번에 값에 접촉하느냐 두 번에 걸쳐서 접촉하느냐이다.
-기본형은 한 번에 해당 값에 바로 접촉할 수 있다. 반면 참조형은 값들을 가지고 있는 메모리의 시작주소와 범위를 갖고, 그 주소에 가서 할당된 값을 얻을 수 있다.
-이렇게 보면 기본형은 할당된 값의 주소를 직접적으로 저장하고 있고, 참조형은 간접적으로 저장하고 있다고 할 수 있다.
-
-### 1.2 가변성(mutable)과 불가변성(immutable)
-
-변수에 값을 할당하고 그 변수의 값을 바꿀 때 가변성과 불가변성을 말하게 된다.
-가변과 불가변은 식별자와 할당된 값이 변화를 의미하는 것이 아니다. 불가변성을 띄는 기본형 데이터 타입도 할당된 데이터를 변경할 수 있다.
-여기서 말하는 가변성은 할당된 데이터 전체를 변경하는 것이 아니라 부분적으로 변경 가능함을 의미한다.
-따라서 기본형은 데이터 값 자체를 새로 배정해야해서 불가변성을 띄고, 참조형은 가지고 있는 데이터의 일부분만 변경할 수 있다는 점에서 가변성을 띈다고 할 수 있다.
-
-### 1.3 복사
-
-자바스크립트에서 복사를 하면 해당 식별자가 가지고 있는 메모리 주소값을 복사하게 된다. 직접적으로 메모리를 참조하는 기본형의 경우 복사한 뒤 원본의 값을 바꾸면 원본이 새로운 주소를 복사하게 되므로 복사본은 원본의 변화에 영향을 받지 않는다.
-
-그러나 참조형의 경우 두 번의 경로를 걸쳐 값에 접근하기 때문에 조금 다르다.
-원본 식별자가 가진 주소는 데이터를 가지고 있는 메모리들의 시작주소와 범위이기 때문에 복사한 뒤에 원본 식별자가 데이터 값을 바꾸면 복사본 식별자의 내용도 따라서 바뀌게 된다. 이 문제를 해결하는 방법에는 n가지가 있다.
-
-#### 1.3.2 얕은 복사
-
-얕은 복사는 반복문 등을 사용해서 값을 복사하는 방법이다. 반복문(비효율) 등을 사용해서 참조형 데이터의 각 프로퍼티에 접근하고 그 값을 복사해서 새로운 객체를 만드는 것이다. 그러나 이것의 문제점은 참조형 데이터 내부에 또 다른 참조형 데이터가 있는 경우 경로를 두번 거치게 되므로 위에 발생한 문제가 반복된다.
-
-#### 1.3.3 깊은 복사
-
-얕은 복사의 문제를 해결하기 위해 객체 내부의 객체까지도 복사하는 깊은 복사방법이 있다. 이방법은 복사 함수를 만들고 그 복사 함수를 재귀적으로 표현하여 참조형 데이터 내부에 참조형 데이터를 가진 경우 그 데이터도 한꺼풀 벗겨서 복사하는 깊은 복사 방법을 사용할 수 있다.
-
-만약 객체 내부의 메소드를 제외하고 필드만 복사하고 싶을 때 간단하게 사용할 수 있는 방법도 있다. 객체를 JSON문법으로 표현된 문자열로 전환했다가 다시 JSON객체로 바꾸는 방법이다. (메소드는 문자열 전환시 그 의미를 담으면서 변환할 수 없어서 안되는 것 같다.)
-
-- ex) JSON.parse(JSON.stringify(target));
-
-#### 1.3.4 배열복사와 객체복사
-
-- 배열 복사 : slice()활용  
-  let num2 = num1.slice();
-- 객체 복사 : Object.assign({},할당값) 활용  
-  let obj2 = Object.assign({},obj1);
-- 중첩 배열이나 중첩 객체일 때는 또 주소값을 복사하기 때문에 위의 방법으로도 문제가 해결되지 않음. 아래 코드로 해결가능
-  function copy(object) {
-  if (object === null || typeof object !== 'object') {
-  return object;
-  }
-  }
-
-### 1.4 undefined와 null
-
-둘 모두 값이 없다는 것을 표현할 때 사용한다. 그러나 그 의미는 조금 다르다.
-
-- null : 의도적으로 값이 없다는 것을 표현할 때 사용한다.
-- undefined : 할당된 값이 없다는 것을 확인할 때 사용된다. (값이 주어지지 않은 변수에 기본적으로 할당)
-
 ## 2. 함수
 
 ### 2.1 옵셔널 파라미터(Optional Parameters)
@@ -120,8 +59,8 @@
 - 날짜 객체 정보 검색  
   현재 시간 반환 : Date.now();
   myDate.getTime(); // 해당 날짜 객체가 1970년 1월 1일 00:00:00 UTC 부터 몇 밀리초 지났는지 반환 (타임 스탬프)  
-  (!응용) let timeDiff = myDate.getTime() - today.getTime(); 으로 시간 얼마나 지났는지 확인 가능  
-   - console.log(myDate.getFullYear()); - console.log(myDate.getMonth()); // 월 정보 0이 1월 - console.log(myDate.getDate()); // 날짜 정보 1이 1일 - console.log(myDate.getDay()); // 요일 정보 0이 일요일 - console.log(myDate.getHours()); - console.log(myDate.getMinutes()); - console.log(myDate.getSeconds()); - console.log(myDate.getMilliseconds());
+  (!응용) let timeDiff = myDate.getTime() - today.getTime(); 으로 시간 얼마나 지났는지 확인 가능
+    - console.log(myDate.getFullYear()); - console.log(myDate.getMonth()); // 월 정보 0이 1월 - console.log(myDate.getDate()); // 날짜 정보 1이 1일 - console.log(myDate.getDay()); // 요일 정보 0이 일요일 - console.log(myDate.getHours()); - console.log(myDate.getMinutes()); - console.log(myDate.getSeconds()); - console.log(myDate.getMilliseconds());
 
 - 날짜 객체 정보 수정  
   set으로 시작하는 다양한 메서드를 활용하면, 생성된 날짜 객체의 정보를 수정할 수도 있다.
@@ -129,9 +68,9 @@
   0 setDate(date) - setHours(hour, [min], [sec], [ms]) - setMinutes(min, [sec], [ms]) - setSeconds(sec, [ms]) - setMilliseconds(ms) - setTime(milliseconds)(1970년 1월 1일 00:00:00 UTC부터 밀리초 이후를 나타내는 날짜를 설정)
 
 간단하게 시간정보 알아내는 방법 (사용자 브라우저에 설정된 국가의 표기에 맞춰 날짜와 시간을 반환) - let myDate = new Date();  
- console.log(myDate.toLocaleString()); // myDate가 가진 날짜와 시간에 대한 정보 (년. 월. 일 시:분:초)  
- console.log(myDate.toLocaleDateString()); // myDate가 가진 날짜에 대한 정보 (년. 월. 일)  
- console.log(myDate.toLocaleTimeString()); // myDate가 가진 시간에 대한 정보 (시:분:초)
+console.log(myDate.toLocaleString()); // myDate가 가진 날짜와 시간에 대한 정보 (년. 월. 일 시:분:초)  
+console.log(myDate.toLocaleDateString()); // myDate가 가진 날짜에 대한 정보 (년. 월. 일)  
+console.log(myDate.toLocaleTimeString()); // myDate가 가진 시간에 대한 정보 (시:분:초)
 
 자동 날짜 수정 : 1월 32일을 입력하면 자동으로 2월 1일로 수정된다.
 
@@ -163,9 +102,9 @@
 
 - arr.splie : arr.splice(시작인덱스, [삭제할 갯수], [대체값]);
 
-  - 삭제하기 : 삭제 갯수 입력
-  - 수정하기 : 삭제 갯수 입력 대체 값 입력
-  - 삽입하기 : 삽입위치, 삭제 갯수 0, 대체값 입 력
+    - 삭제하기 : 삭제 갯수 입력
+    - 수정하기 : 삭제 갯수 입력 대체 값 입력
+    - 삽입하기 : 삽입위치, 삭제 갯수 0, 대체값 입 력
 
 - arr.shift() : 배열의 첫 요소 삭제
 - arra.pop() : 배열의 마지막 요소 삭제하고 반환
@@ -211,8 +150,8 @@
 - 제곱근 : Math.sqrt(num);
 - 반올림 : Math.round(num);
 - 버림과 올림
-  - 올림 : Math.ceil(num);
-  - 버림 : Math.floor(num);
+    - 올림 : Math.ceil(num);
+    - 버림 : Math.floor(num);
 - 난수 : Math.random();
 - !JS에서는 Python에서의 // 몫 연산자가 존재하지 않는다. JS몫 연산을 위해서는 나누기 연산자로 연산을 하고 소수점을 버림해주면 된다.!
 
