@@ -11,6 +11,11 @@ package.json 파일에 프로젝트 정보와 종속성을 정의한다.
     # npm 특정버전 업그레이드
     % sudo npm install -g npm@x.x.x
 
+    % npm init                  // package.json 생성
+    % npm install {라이브러리}     // 특정 라이브러리 설치 (package.json 자동 업데이트)
+    % npm install package.json  // package.json으로 의존성 일괄 설치
+
+
 ### 2-1. n으로 npm 버전 관리하기
     % npm install -g n  // n 설치
 
@@ -35,11 +40,11 @@ npm과 비슷한 역할을 하는 패키지 관리자이다. yarn은 yarn.lock �
     % export PATH="$PATH:/opt/yarn-[version]/bin"
 
     # 사용법
-    % yarn init     # 프로젝트 시작 시 초기화 하려면 (package.json 생성)
-    % yarn install  # package.json 으로부터 의존성 모듈 설치
+    % yarn init     // 프로젝트 시작 시 초기화 하려면 (package.json 생성)
+    % yarn install  // package.json 으로부터 의존성 모듈 설치
 
     # 의존성 모듈 설치
-    % yarn add [package]
+    % yarn add [package]    // yarn.lock, package.json에 자동으로 반영
     % yarn add [package]@[version]
     % yarn add [package]@[tag]
 
@@ -50,6 +55,3 @@ npm과 비슷한 역할을 하는 패키지 관리자이다. yarn은 yarn.lock �
 
     # 의존성 모듈 제거
     % yarn remove [package]
-
-    # 새로 다운 받은 의존성 모듈 package.json에 반영
-    % yarn
