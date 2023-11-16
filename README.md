@@ -11,9 +11,9 @@ package.json 파일에 프로젝트 정보와 종속성을 정의한다.
     # npm 특정버전 업그레이드
     % sudo npm install -g npm@x.x.x
 
+### 2-1. n으로 npm 버전 관리하기
     % npm install -g n
 
-### 2-1. n으로 npm 버전 관리하기
     % sudo n stable     // 안정 버전 설치
        n latest     // 최신 버전 설치
        n lts        // lts 버전 설치
