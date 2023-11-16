@@ -53,9 +53,5 @@ npm과 비슷한 역할을 하는 패키지 관리자이다. yarn은 yarn.lock �
     $ yarn upgrade [package]@[version]
     $ yarn upgrade [package]@[tag]
 
-    # 의존성 충돌시 캐시 지우고 다시 설치
-    % yarn cache clean     
-    % yarn install
-
     # 의존성 모듈 제거
     % yarn remove [package]
