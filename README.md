@@ -12,16 +12,16 @@ package.json 파일에 프로젝트 정보와 종속성을 정의한다.
     % sudo npm install -g npm@x.x.x
 
 ### 2-1. n으로 npm 버전 관리하기
-    % npm install -g n
+    % npm install -g n  // n 설치
 
     % sudo n stable     // 안정 버전 설치
-       n latest     // 최신 버전 설치
-       n lts        // lts 버전 설치
-       n x.x.x      // 특정 버전 설치 ( x.x.x 버전 )
+       n latest         // 최신 버전 설치
+       n lts            // lts 버전 설치
+       n x.x.x          // 특정 버전 설치 ( x.x.x 버전 )
 
-    % n ls          // 설치 목록 보기
-    % sudo n        // 방향키로 버전 선택 후 엔터
-    % n rm x.x.x    / 특정 버전 삭제터
+    % n ls              // 설치 목록 보기
+    % sudo n            // 방향키로 버전 선택 후 엔터
+    % n rm x.x.x        // 특정 버전 삭제
 
 ### 2-2. npx
 npx는 npm 패키지 실행 도구이다. 특히 CLI도구나 일회성 스크립트를 실행할 때 유용하다. npm 패키지를 전역으로 설치하지 않고, 필요할 때 실행할 수 있도록 도와준다.
