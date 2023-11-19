@@ -55,3 +55,10 @@ npm과 비슷한 역할을 하는 패키지 관리자이다. yarn은 yarn.lock �
 
     # 의존성 모듈 제거
     % yarn remove [package]
+
+### 3. ERROR
+
+#### 3-1. Watchpack Error (watcher)
+> Error: ENOSPC: System limit for number of file watchers reached ...
+
+    sudo sysctl -w fs.inotify.max_user_watches=524288    
