@@ -5,6 +5,7 @@
 {
     console.log(typeof 'Hello'+'World');    // 줄이 다를 땐 세미콜론 안해도 되지만, 줄이 같으면 표시해야함
     console.log(typeof typeof (3+8));
+    console.log(typeof(3+8));
 }
 
 

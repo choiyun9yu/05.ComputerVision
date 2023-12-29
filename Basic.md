@@ -1,10 +1,49 @@
+## 1. 변수
+- Boolean: true / false
+- null: 의도적으로 값이 입력되어 있지 않음을 나타내는 키워드
+- undefined: 값이 정의되어 있지 않는 최상위 속성
+- Number: 정수 또는 실수형 숫자
+- String: 문자열
+- Symbol: 인스턴스가 고유하고 불변인 데이터
+
+### 1-1. 데이터 타입과 관련된 함수
+    /* 데이터 타입 확인, 데이터 타입을 문자열로 반환 */
+    typeof()
+
+    /* 데이터 타입 캐스팅 */
+    Number()  /* 자료형을 숫자로 바꾼다. (자바스크립트는 정수와 실수 구분 안함) */
+    String()  /* 자료형을 문자열로 바꾼다. (자바스크립트는 char와 string 구분 안함) */
+    Boolean() /* 자료형을 불리언 값으로 바꾼다. 
+               * falsy = '', 0,  null, undefined, NaN(Not a Number)
+               * !Boolean("false"), Boolean("0") 는 true이다. 문자형이기때문!
+               */
+
+### 1-2. var과 let
+- var는 변수를 선언하고 let은 블록 스코프 변수를 선언한다.
+- 선언지정된 초기값 없이 선언하면 undefined 값을 갖는다.
+    - undefined 값은 수치 맥락에서 사용될 땐 NaN으로 변환된다.
+    - undefined 값은 불링너 맥락에서 사용될 땐 false값으로 변환된다.
+- 선언되지 않은 변수에 접근을 시도하는 경우 ReferenceError 예외가 발생한다.
+- undefined는 값이 지정되지 않음을 의미하고 null은 원시값 중 하나로 의도적으로 비어있음을 의미한다.
+
+### 1-3. const
+- 블록 스코프 읽기 전용 상수 선언한다.
+- 상수는 스크립트가 실행중인 동안 대입을 통해 값을 바꾸거나 재선언될 수 없다. 값으로 초기화해야한다.
+- 그러나 상수에 할당된 객체의 속성이나 배열의 요소는 바꿀 수 있다.
+
+### 1-4. hoisting
+- JavaScript의 특이한 점은 나중에 변수된 변수더라도 사용할 수 있다. 변수가 최상단으로 끌어올려지기 때문이다.    
+  (그러나 끌어올려진 변수는 undefined 값을 반환한다.)
+- 심지어 해당 변수가 위에서 참조되었더라도 밑에서 재선언되거나 초기화되면 undefined 값을 반환한다.
+
+
 ## 2. 함수
 
 ### 2.1 옵셔널 파라미터(Optional Parameters)
 
 매개 변수에 default 값을 미리 할당해두고 값이 입력되지 않으면 default값이 인자로 들어가는 것이다.
 
--   function funcName (a, b='defaultParam') {...}
+    function funcName (a, b='defaultParam') {...}
 
 ## 3. 제어문
 
@@ -97,9 +136,9 @@ console.log(myDate.toLocaleTimeString()); // myDate가 가진 시간에 대한 �
 
 ### 5.1 배열은 미리 만들어 둔 객체이다. 배열에도 미리 만들어진 메소드들이 있다.
 
-    - 배열의 길이 반환 : arr.length;    arr['length'];
-    - 배열의 마지막 요소에 접근하기 : arr[arr.length-1]'
-    - 배열에 요소 추가/수정하기 : arr[index] = value;
+- 배열의 길이 반환 : arr.length;    arr['length'];
+- 배열의 마지막 요소에 접근하기 : arr[arr.length-1]'
+- 배열에 요소 추가/수정하기 : arr[index] = value;
 
 -   arr.splie : arr.splice(시작인덱스, [삭제할 갯수], [대체값]);
 
