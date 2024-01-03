@@ -4,15 +4,15 @@
 
 ### 1-1. Express 설치
 
-    % npm install express 
+    % npm install Express 
 
 ### 1-2. 프로젝트 생성
 #### app.js
     // Express.js 모듈 가져오기
-    const express = require('express')
+    const Express = require('Express')
     
     // Express 애플리케이션 생성
-    const app = express();
+    const app = Express();
     
     // 루트 경로에 "Hello World!" 출력
     app.get('/', (req, res) => {
@@ -31,7 +31,7 @@
 
 ### 1-4. 프로젝트 구조
 
-    my-express-app/
+    my-Express-app/
     |-- node_modules/          // npm 패키지들이 설치되는 디렉토리
     |-- public/                // 정적 파일 (이미지, CSS, 클라이언트 사이드 JavaScript 등)
     |   |-- images/

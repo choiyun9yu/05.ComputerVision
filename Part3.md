@@ -755,10 +755,10 @@ Array.filter : 인자로 술어(boolean반환 하는 함수)를 받아 새로운
 
 Array.map : 인자로 변환 함수를 받아 모든 원소에 적용해 반환받은 값으로 새로운 배열을 구성한다.
 
-    const highSchools = schools.map(school => `${school} High School`);
-    console.log(highSchools.join("\n"));    // Yorktown High School
-                                            // Washington & Lee High School
-                                            // Wakefield High School
+    const highSchools = schools.map(school => `${school} High Study`);
+    console.log(highSchools.join("\n"));    // Yorktown High Study
+                                            // Washington & Lee High Study
+                                            // Wakefield High Study
 
 map 함수는 객체, 값, 배열, 다름 함수등 모든 자바스크립트 타입으로 이뤄진 배열을 만들 수 있다.
 
