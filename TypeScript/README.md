@@ -601,5 +601,3 @@
 
     // 제네릭 여러개 설정 가능
     type Pair2<T, U, V> = [T, T];
-
-## 6. tsconfig.json~
