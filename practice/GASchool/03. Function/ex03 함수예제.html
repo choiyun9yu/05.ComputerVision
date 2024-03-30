@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1. 사용자에게 두개의 숫자를 입력받아줌
+        // 2. console창에 덧셈, 뺄셈, 곱셈, 나눗셈에 대한 결과 출력
+        //      결과출력
+        //  (3과 2의 덧셈 5) 
+        //  (3과 2의 뺄셈 1)
+        //  (3과 2의 곱셈 6)
+        //  (3과 2의 나눗셈 1.~~)
+        // 단, 4개의 함수를 만들 것
+        // plus(), minus(), multi(). div()
+        // 만약 첫번째 숫자가 더 작다면 두번째 숫자에서 첫번째 숫자 빼거나 나누기
+        
+        let Num1 = Number(prompt('숫자1을 입력하세요'))
+        let Num2 = Number(prompt('숫자2를 입력하세요'))
+        
+        function plus(Num1, Num2){
+            console.log(Num1+Num2)
+        }
+
+        function minus(Num1, Num2){
+            if(Num2>Num1){
+                retrun(Num2 - Num1)
+            }else{
+                retrun(Num1 - Num2)
+            }
+        }
+        console.log(`${Num1}와 ${Num2}의 뺄셈은? ${minus(Num1,Num2)}`)
+        // 물결 밑에 `표시
+
+        function multi(Num1, Num2){
+            console.log(Num1*Num2)
+        }
+
+        function div(Num1, Num2){
+            if(Num2>Num1){
+                return(Num2 / Num1)
+            }else{
+                return(Num1 / Num2)
+            }
+        }
+    </script>
+</body>
+</html>

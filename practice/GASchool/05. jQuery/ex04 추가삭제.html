@@ -1,0 +1,80 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 200px;
+            height: 200px;
+        }
+        .greenClass{
+            border: 5px solid greenyellow;
+        }
+    </style>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div>
+        <img src= id="img1">
+    </div>
+    <button id="btn1">div내부 앞에 추가</button>
+    <button id="btn2">div내부 뒤에 추가</button>
+    <button id="btn3">div외부 앞에 추가</button>
+    <button id="btn4">img 1개 삭제</button>
+    <button id="btn5">div 안 비우기</button>
+    <button id="btn6">class 추가</button>
+    <button id="btn7">class 삭제</button>
+    <button id="btn8">부모요소 접근</button>
+    <script>
+        // 1. 요소의 내부 앞쪽 추가 : prepend()
+        // 누적의 성질을 가지고 있다.
+        $('#btn1').click(()=>{
+            $('div').prepend('<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeNcLsHGZm-hjXfRLeUKI3EQ-unTwQ1BQWkw&usqp=CAU">')
+        })
+        // 2. 요소의 내부 뒤쪽 추가 : append()
+        // 누적의 성질을 가지고 있다.
+        $('#btn2').click(()=>{
+            $('div').append('<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOumeKG3gy-QPM1t8vOiVDk0X1qwQfV8px-A&usqp=CAU">')
+        })
+        // 3. 요소의 외부 앞쪽 추가 : before()
+        $('#btn3').click(()=>{
+            $('div').before('<button id="newBtn">새로 생긴 버튼</button>')
+        })
+        // .click vs .on('click')
+        // 동적 이벤트 바인딩 차이
+        // .click : 최조의 페이지를 로딩할 때 선언되어있던
+        //      요소들에 이벤트를 바인딩 그 이후 더이상 바인딩하지 않음
+        // on('click') : 동적으로 추가된 태그 이벤트 바인딩
+        $(document).on('click','#newBtn',()=>{
+            // 4. 요소의 외부 뒤쪽 추가 : after()
+            $('div').after('<p>div 외부 뒤에 추가!</p>')
+        })
+        // 5. 요소 지우기! remove()
+        $('#btn4').click(()=>{
+            // $('#img1').remove()
+            $('img')[0].remove()
+        })
+        // 6. 요소 비우기 empty()
+        $('#btn5').click(()=>{
+            $('div').empty()
+        })
+        // 7. Class 추가 addClass()
+        $('#btn6').click(()=>{
+            $('img').addClass('greenClass')
+        })
+        // 8. Class 삭제 removeClass()
+        $('#btn7').click(()=>{
+            $('img').removeClass('greenClass')
+        })
+        // 9. 부모요소
+        $('#btn8'),click(()=>{
+            $('div>img').parent().remove()
+        })
+    </script>
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1 id="h1Tag">
+    jQuery를 활용하자!
+    </h1>
+
+    <script>
+        // jQuery에서 요소를 선택
+        // $('선택자')
+        
+        // 1. innerText -> .text('변경할 내용')
+        $('#h1Tag').text('jQuery 변경')
+        
+        // 2. innerHTML -> .html('변경할 내용+태그')
+        // $('#h1Tag').html('<a href="#">jQuery 변경!</a>')   //href="#" 현재페이지로 이동
+
+        // 3. style.속성이름 -> .css('속성이름', '속성값')
+        $('#h1Tag').css('color','salmon')
+
+
+
+    </script>
+
+</body>
+</html>

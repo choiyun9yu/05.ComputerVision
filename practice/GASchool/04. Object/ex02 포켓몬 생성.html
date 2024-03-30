@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1. pokemon 객체를 생성
+        let pokemon = {
+            pika : {
+                name : '피카츄',
+                age : 2,
+                skill : function(){
+                    alert('백만볼트!')
+                }
+            },
+            kkobook : {
+                name : '꼬부기',
+                age : 1,
+                skill : function(){
+                    alert(' 물대포!')
+                }
+            },
+            }
+        
+        pokemon.pika.skill()
+        document.write(`${pokemon.pika.name}의 나이는 ${pokemon.pika.age}입니다.<br>`) //br의 위치가 중요하다. JS영역이 아니라 문서 영역안에 넣어줘야한다.
+        document.write(`${pokemon.kkobook.name}의 나이는 ${pokemon.kkobook.age}입니다.`)
+        console.log(pokemon.kkobook.skill)
+        // 2. pokemon 객체 안에 pika라는 객체,
+        //                      kkobook 객체 두개 생성
+        // 3. pick, kkobook 객체 각각
+        // name, age, skill을 보유
+        // pika -> 이름 : 피카츄, 나이: 2살, 스킬 : '백만볼트!'팝업창
+        // kkobook -> 이름 : 꼬북이, 나이 : 1살, 스킬 : '물대포!' 팝업창
+        
+        // 결과창
+        // (1) 팝업창 : 백만볼트!
+        // (2) HTML 문서 내에 :
+        //          피카츄의 나이는 2살입니다.
+        //          꼬북이의 나이는 1살입니다.
+        // (3) console창에 : 물대포!
+
+        // HTML 문서
+        // 최상위 객체 : document
+        // JS의 영역에서 HTML로 접근하려면 반드시 document를 거처야한다
+        // ---JS의 영역___
+        // 문서 객체에 접근 --> document.
+        // 가지고오다 --> get
+        // 요소 --> Element
+        // 
+        // 
+        // 
+
+    </script>
+</body>
+</html>
