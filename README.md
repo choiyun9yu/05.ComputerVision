@@ -56,7 +56,14 @@ npm과 비슷한 역할을 하는 패키지 관리자이다. yarn은 yarn.lock �
     # 의존성 모듈 제거
     % yarn remove [package]
 
-### 3. ERROR
+## 3. Dependency
+
+    # 의존성 관련 node 모듈 삭제 후 다시 설치
+    % rm -rf yarn.lock
+    % rm -rf node_modules/
+    % yarn
+
+### 4. ERROR
 
 #### 3-1. Watchpack Error (watcher)
 > Error: ENOSPC: System limit for number of file watchers reached ...
